@@ -1,0 +1,40 @@
+schema: spec-driven
+
+context: |
+  Learning project (low stakes): build a fact-check feed end to end with AI, using spec-driven development and automated tests.
+  Product: a weekly job ingests recent fact-checked claims into the app's own database; a web UI lists them, prioritizing this week's claims and negatively rated ones, and links to the original fact-check.
+  Stack: TypeScript, Next.js, Postgres (Neon), Drizzle, zod, Vitest, Playwright. Hosted on Vercel; the weekly job is a script run by a GitHub Actions cron (not a serverless route, to avoid timeouts).
+  Hard constraint: must not break web scraping laws or source terms.
+  Store only claim text, rating, publisher, date and a link back to the original. Never store or copy article bodies.
+  Prefer structured sources (bulk datasets, APIs, RSS, ClaimReview) over HTML scraping. Where scraping is unavoidable, respect robots.txt and ToS, rate-limit, and use an honest user-agent.
+  Every source must be on an allowlist that records its access method (API / RSS / bulk / page), license and attribution requirement.
+  Sole v1 source: Data Commons ClaimReview feed, https://storage.googleapis.com/datacommons-feeds/claimreview/latest/data.json (schema.org DataFeed JSON, about 200 MB full snapshot, refreshed daily by Google; we fetch it weekly). Compilation is CC BY 4.0, so attribution is required. Records have no `sdLicense` field, so the allowlist entry is the feed itself (access method: bulk, license: CC BY 4.0).
+  Out of scope for v1: Google Fact Check Tools API (its terms prohibit building a database of returned content), publisher RSS, Reporters' Lab. Revisit only with a verified license.
+  Feed facts (checked 2026-10-31): few publishers are active in any week, many records lack `datePublished`, some dates are in the future, rating text is free-form and multilingual (sometimes a full sentence), and claim records carry no language field.
+  Ingestion rules: keep English only, detected from the claim text with a deterministic library (no LLM). Keep a rolling 90-day window by `datePublished`. Reject future-dated records and exclude records without a valid `datePublished`. The upsert key is the article URL (a known limitation: several claims can share one URL). Publisher names are stored as they appear in the feed, with no canonicalization.
+  Rating severity: an LLM classifies each distinct rating text into a category and severity, with an "unclassifiable" outcome; results are cached per rating string. The LLM is used for nothing else.
+
+rules:
+  proposal:
+    - State which sources and access methods the change touches, and what is out of scope
+    - Call out any new legal or licensing impact (terms, attribution, caching)
+  specs:
+    - Include legal rules (stored fields, attribution, allowlist) as testable requirements where relevant
+    - Write acceptance criteria per feature as scenarios that can be turned into tests
+  design:
+    - Source adapters sit behind one interface and emit normalized records keyed by article URL
+    - Ranking considers recency (strong boost for the last 7 days within the 90-day window) and rating severity (negative ratings first). Publisher count is not a signal
+    - Record the URL upsert key as an ADR, with the revisit trigger "multi-claim articles turn out to be common"
+    - Record notable decisions with their rationale (ADR style)
+  tasks:
+    - Put tests before implementation for each feature
+
+operations:
+  apply:
+    guidance:
+      - Write tests first, then implement until they pass
+      - Use adapter contract tests with recorded fixtures, an ingestion integration test, and Playwright for e2e
+      - Never hit live sources in automated tests
+  archive:
+    guidance:
+      - Confirm any new or changed source is recorded in the allowlist with its access method and license
