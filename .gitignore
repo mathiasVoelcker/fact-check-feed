@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# next.js / typescript build output
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# environment files (secrets live in CI or local env files, never in the repo)
+.env
+.env.*
+!.env.example
+
+# downloaded feed snapshots and temp files
+/tmp/
+*.feed.json
+data.json
+feed-snapshot*
+
+# logs and OS files
+*.log
+.DS_Store
+.neon

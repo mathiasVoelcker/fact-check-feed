@@ -1,0 +1,71 @@
+# Test guide
+
+How to run the tests, what they cover, and what they deliberately do not touch. For the reasoning behind the strategy see decision D12 in `openspec/changes/ingest-data-commons-feed/design.md`.
+
+## Running the tests
+
+You need Node 24 (`nvm use 24`; the version is pinned in `.nvmrc`) and `npm install`. You do **not** need a database, Docker, a network connection or any API key.
+
+```
+npm test
+```
+
+This runs `vitest run` over `tests/**/*.test.ts`: about 20 files and 325 tests.
+
+| Goal                         | Command                                                      |
+| ---------------------------- | ------------------------------------------------------------ |
+| Run one file                 | `npx vitest run tests/ingestion.test.ts`                     |
+| Run tests matching a name    | `npx vitest run -t "idempotent"`                             |
+| Watch mode (re-run on edits) | `npx vitest`                                                 |
+| Typecheck (separate step)    | `npm run typecheck`                                          |
+| Validate the specs           | `openspec validate ingest-data-commons-feed --strict`        |
+
+The suite is limited to 2 workers and has generous timeouts (30 s per test, 60 s per hook; see `vitest.config.ts`). The memory test and the PGlite database tests make it slower than a typical unit suite, and on a heavily loaded machine it can look stuck for a long time. If that happens, close other heavy processes and run it again.
+
+## What never happens in a test
+
+- The live Data Commons feed is never requested. The download is replaced by a local stub server.
+- No publisher site is contacted.
+- The Gemini API is never called, and the real client is never constructed. A fake classifier stands in for it.
+- No real Postgres is used. Tests run against [PGlite](https://pglite.dev), a Postgres engine that runs inside the test process, with the real migrations from `drizzle/` applied (see `tests/support/db.ts`). Production uses Neon; the SQL is the same.
+
+## What the tests cover
+
+| Area                 | Files                                                                                         |
+| -------------------- | --------------------------------------------------------------------------------------------- |
+| Allowlist            | `allowlist`, `allowlist-guard`                                                                |
+| Database schema      | `schema`                                                                                      |
+| Data Commons adapter | `data-commons-adapter`, `data-commons-adapter-memory`, `data-commons-fetch`                   |
+| Filters              | `filter-required-fields`, `filter-dates`, `filter-entries`, `language`                        |
+| Classification       | `classification`, `gemini-classifier`                                                      |
+| Whole pipeline       | `ingestion`, `legal`, `cli`                                                                   |
+| Docs and workflow    | `docs`, `workflow`                                                                            |
+| Spec coverage        | `spec-coverage`                                                                               |
+| Setup checks         | `placeholder`, `fixtures`                                                                     |
+
+File names are `<name>.test.ts`.
+
+## Fixtures and support code
+
+- `fixtures/claimreview-sample.json`: 54 reviews trimmed from the real feed, plus a few hand-made edge cases (missing URL, impossible date, and so on). `fixtures/NOTICE.md` explains which entries are derived. The data comes from Data Commons under CC BY 4.0.
+- `fixtures/language-labeled.json`: 165 claims labeled English or not, used for the language-detection accuracy test.
+- `fixtures/classifier-responses.json`: model answers **written by hand**, not recorded from the real model.
+- `support/db.ts`: starts a fresh PGlite database with the migrations applied.
+- `support/feed-server.ts`: the local stub server that replaces the live feed.
+- `support/fixture.ts`, `support/ingestion.ts`: load the fixture and build a ready-to-use test harness for a whole run.
+
+## The spec-coverage test
+
+`spec-coverage.test.ts` reads every `#### Scenario:` in the three specs and checks that a test is mapped to it. It fails when:
+
+- a scenario has no mapped test,
+- a mapping names a scenario that no longer exists, or
+- a mapped test has been renamed or removed.
+
+When you add a scenario to a spec, add a line for it in that file's `COVERAGE` table. Also update the expected scenario count in the test.
+
+## Known gaps
+
+- The classifier prompt has not been tried against the real model. The classifier tests use the hand-written answers above, so they prove the plumbing (validation, caching, failure handling, and that only the rating text is sent), not the model's judgment. Only a real run with an `GEMINI_API_KEY` shows that.
+- The GitHub Actions workflow file is tested for its structure and for the absence of secrets, but it has not yet passed `actionlint` or run on GitHub.
+- There are no browser tests (Playwright). They arrive with the UI change.

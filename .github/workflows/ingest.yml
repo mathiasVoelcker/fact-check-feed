@@ -1,0 +1,40 @@
+name: Weekly ingestion
+
+on:
+  schedule:
+    # Mondays at 04:17 UTC. The Data Commons feed is refreshed daily; we read it once a week.
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A run downloads a ~200 MB snapshot and writes in one transaction; never let two overlap.
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The script prints the run report and appends it to the workflow summary (GITHUB_STEP_SUMMARY).
+      # It exits non-zero when the run fails, which fails this step.
+      - name: Ingest the Data Commons feed
+        run: npm run ingest
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

@@ -1,0 +1,2142 @@
+{
+  "@context": "http://schema.org",
+  "@type": "DataFeed",
+  "dataFeedElement": [
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "A man seen standing beside the President in a photo put on a monk's robe and chanted \"seth kavi\" for the President at the Kandy protest.",
+          "datePublished": "2026-10-30",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid0eQEBkmVNc2UTjiEBpMFBNxi94J14tcnfVjxJswMAhraz3RpVekrs9WDG7idwr5b5l&id=61560930605931"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-24"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/udugoda-nandaratana-thero-seth-kavi-layman-photo-edited-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Former President Gotabaya Rajapaksa said, \"The country is heading for a bad state; Anura does not have the ability to govern the country!\"",
+          "datePublished": "2026-10-31",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/kalmunaitoday.2025/posts/pfbid02PoQvKmJ47VfExiSg9x1XvKJJ3mpP6seJxSeDXyVANwXGrBt7Utyb1DiPvhAt4egtl"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-25"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/gotabaya-rajapaksa-anura-cannot-govern-quote-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Protesters raised a Palestinian flag on top of the Eiffel Tower during the October 2026 protests in France.",
+          "datePublished": "2026-10-31",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/shalithacameron/posts/pfbid02zDmipMejWYd1wzEF8SrUyjqZeviREPaciCMtQSgQfVYazaWNsLE8Ah36WFnC7572l"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-19"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/eiffel-tower-palestinian-flag-france-protests-ai-video-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Dilith Jayaweera and Channa Jayasumana distributed a lorry of beef on the day before Vap Poya (24 October 2026).",
+          "datePublished": "2026-10-29",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/reel/1496345272540621"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-24"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Misleading"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/dilith-channa-beef-lorry-kidu-altered-photos-misleading/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FACTLY",
+            "url": "https://factly.in/"
+          },
+          "claimReviewed": "The videos show visuals of Cyclone Arnab and the conditions during its landfall.",
+          "datePublished": "2026-10-29",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.instagram.com/indians._.01/reel/DfAU6Ebu3-o/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social Media User"
+            },
+            "datePublished": "2026-10-27"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "MISLEADING",
+            "bestRating": "5",
+            "image": "https://factly.in/wp-content/uploads//2018/12/Misleading.png",
+            "ratingExplanation": "None of the videos show Cyclone Arnab or the conditions during its landfall in October 2026. The first video shows a tornado in Bihar’s Vaishali district on 26 September 2026, the second shows a tornado in the US Virgin Islands on 6 July 2026, the third shows a severe storm in Antalya, Turkey, reported on 27 October 2026, and the fourth shows a tornado in Odisha on 15 March 2026. The origin of the fifth video could not be independently verified; however, it has been available online since at least 29 May 2026, predating Cyclone Arnab’s landfall on 28 October 2026.",
+            "ratingValue": "2",
+            "worstRating": "1"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factly.in/these-viral-videos-are-unrelated-to-cyclone-arnabs-landfall/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Gangaramaya Temple's palm-leaf manuscripts and their knowledge are being secretly sent to India under the SAMHiTA project, so Sri Lanka will lose them.",
+          "datePublished": "2026-10-30",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/withSLPP/posts/pfbid02mpxBW6uSW5jqZdYQioqg2dBRrxPYNXMmqK4pMXEq9BoeXTQKFyoerg4ARERae6rWl"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-26"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Missing Context"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/gangaramaya-samhita-palm-leaf-manuscripts-india-missing-context/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "\"Tsunami threat with two earthquakes, stay alert\" - a warning of a tsunami threat to Sri Lanka.",
+          "datePublished": "2026-10-31",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://web.facebook.com/groups/327944402387127/posts/1689126699602217/?_rdc=1&_rdr"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-24"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Missing Context"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/two-earthquakes-tsunami-risk-sri-lanka-post-missing-context/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "VERA Files",
+            "url": "https://verafiles.org/"
+          },
+          "claimReviewed": "Ferdinand Marcos Jr. can be arrested for fraud and bribery for allegedly using P50 million in public funds for the capture of Ronald \"Bato\" Dela Rosa without a Philippine court-issued arrest warrant.",
+          "datePublished": "2026-10-30",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/BayaniComedy/posts/pfbid02bJo1U6HJBSYVcV2sTc62hARnFJh6NKh2w8WReqbHX5WzKhUDUP1b4uaSoGBVunSNl"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Facebook page Makata Ng Bayan"
+            },
+            "datePublished": "2026-10-26"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False",
+            "ratingExplanation": "The P50-million reward offered for the capture of Dela Rosa is an operational strategy of the DILG and PNP using their intelligence and confidential funds.\n"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://verafiles.org/articles/fact-check-pbbm-arrest-for-fraud-bribery-over-p50-m-bato-reward-false"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FactRakers",
+            "url": "https://www.factrakers.org/"
+          },
+          "claimReviewed": "PH the most corrupt country in Asia",
+          "datePublished": "2026-09-30",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "Social media posts"
+            },
+            "datePublished": "2026-09-18",
+            "name": "In a Facebook post"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "FALSE",
+            "image": "https://bit.ly/4rC4azo",
+            "ratingExplanation": "Global corruption indices show many Asian countries worse than PH"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.factrakers.org/post/ph-not-the-most-corrupt-country-in-asia-corruption-indices-show"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FactCheck.org",
+            "url": "https://www.factcheck.org/"
+          },
+          "claimReviewed": "Ad shows an AI-version of James Talarico saying: “I always think of myself as a Christian who hates Christianity.”",
+          "datePublished": "2026-09-15",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "Ken Paxton Senate campaign"
+            },
+            "datePublished": "2026-09-08",
+            "name": "Digital ad"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Missing context",
+            "ratingExplanation": "That’s something Talarico, a Texas state representative, did say during a March 4, 2021, episode of the “Activist Theology” podcast. But the ad leaves out what came before and after that comment."
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.factcheck.org/2026/09/paxtons-ai-heavy-ad-leaves-out-context-of-talarico-remarks-about-christianity/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Policy Wire",
+            "url": "https://policy-wire.com/"
+          },
+          "claimReviewed": "A Pakistani Ministry of Foreign Affairs cable dated 17 May 2026 was sent directly to Israel's Foreign Ministry.",
+          "datePublished": "2026-08-26",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "@AHADHANOA"
+            },
+            "datePublished": "2026-08-25",
+            "firstAppearance": {
+              "@type": "CreativeWork",
+              "url": "https://x.com/ahadhanoa/status/2091987862325490069"
+            },
+            "name": "Online / X (formerly Twitter)"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "false",
+            "bestRating": "5",
+            "ratingExplanation": "The alleged 17 May 2026 Pakistani MFA cable has not been authenticated, and no official Pakistani or Israeli source confirms that such a cable was sent directly to Israel's Foreign Ministry. Pakistan's official MFA records from May 2026 document its diplomatic engagements and do not substantiate the alleged cable. The claim is therefore false.",
+            "ratingValue": "1",
+            "worstRating": "1"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://policy-wire.com/fabricated-pakistan-mfa-cable-to-israel-circulates-online/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "DW Fact check",
+            "url": "https://www.dw.com/"
+          },
+          "claimReviewed": "\"The Spanish Supreme Court issued a ruling considered one of the most prominent decisions in the migration file, prohibiting the immediate deportation of irregular migrants...\"",
+          "datePublished": "2026-08-05",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/100093405826612/posts/-%D9%82%D8%B1%D8%A7%D8%B1-%D9%82%D8%B6%D8%A7%D8%A6%D9%8A-%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE%D9%8A-%D9%81%D9%8A-%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A%D8%A7-%D8%A3%D8%B5%D8%AF%D8%B1%D8%AA-%D8%A7%D9%84%D9%85%D8%AD%D9%83%D9%85%D8%A9-%D8%A7%D9%84%D8%B9%D9%84%D9%8A%D8%A7-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A%D8%A9-%D8%AD%D9%83%D9%85%D9%8B%D8%A7-%D9%8A%D9%8F%D8%B9%D8%AF-%D9%85%D9%86-%D8%A3%D8%A8%D8%B1%D8%B2-/915767184880134/"
+              }
+            ],
+            "datePublished": "2026-08-01"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False."
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.dw.com/en/fact-check-did-misleading-claims-about-spains-migration-law-trigger-the-ceuta-crisis/a-78233161"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "The tusker Agbo has been shot.",
+          "datePublished": "2026-10-21",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.awesomescreenshot.com/image/64548689?key=e2ca7933874b55a01c4671fe6d661d12"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-20"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/social-media-claims-that-agbo-was-shot-are-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FACTLY",
+            "url": "https://factly.in/"
+          },
+          "claimReviewed": "The visuals show the August 2026 Nepal floods.",
+          "datePublished": "2026-08-28",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/reel/1105755468678770"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social Media User"
+            },
+            "datePublished": "2026-08-28"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "MISLEADING",
+            "bestRating": "5",
+            "image": "https://factly.in/wp-content/uploads//2018/12/Misleading.png",
+            "ratingExplanation": "None of the videos are related to the Nepal floods in August 2026. They are either old videos from other locations or AI-generated videos that are being shared as visuals of the disaster.",
+            "ratingValue": "2",
+            "worstRating": "1"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factly.in/none-of-these-visuals-are-related-to-the-nepal-floods-in-august-2026/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FACTLY",
+            "url": "https://factly.in/"
+          },
+          "claimReviewed": "Visuals showing the floods in Nepal’s Rasuwa area.",
+          "datePublished": "2026-09-01",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/watch/?v=1473741621179660"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social Media User"
+            },
+            "datePublished": "2026-08-31"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "MISLEADING",
+            "bestRating": "5",
+            "image": "https://factly.in/wp-content/uploads//2018/12/Misleading.png",
+            "ratingExplanation": "These visuals are not from Nepal’s Rasuwa area. They show the flooding in NEEPCO Colony in Posa, Kei Panyor district, Arunachal Pradesh, on 24 June 2026.",
+            "ratingValue": "2",
+            "worstRating": "1"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factly.in/old-flood-visuals-from-arunachal-pradeshs-kei-panyor-district-shared-as-recent-visuals-from-nepals-rasuwa-area/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Sri Lanka has been removed from the United Nations.",
+          "datePublished": "2026-09-30",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.awesomescreenshot.com/image/63912789?key=794a5efa901a854e3f9a859dc2f60fc2"
+              },
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.awesomescreenshot.com/image/63912810?key=bbe3caa025de8c7fc648c856e27e1b26"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-09-30"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/claims-that-sri-lanka-has-been-removed-from-the-united-nations-are-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FACTLY",
+            "url": "https://factly.in/"
+          },
+          "claimReviewed": "A video bearing the ANI logo shows Lieutenant General Girish Kalia claiming that China has taken control of Asaphila, Longju, and Taksing Circle in Arunachal Pradesh and that the central government has not taken sufficient action.",
+          "datePublished": "2026-10-26",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/reel/1422345569451538"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social Media User"
+            },
+            "datePublished": "2026-10-26"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "FALSE",
+            "bestRating": "5",
+            "image": "https://factly.in/wp-content/uploads//2018/12/False.png",
+            "ratingExplanation": "The viral video is digitally altered, and the audio is a deepfake. The original video, published by ANI in October 2023, shows Major General Girish Kalia speaking about infiltration attempts along the Line of Control (LoC) in Jammu and Kashmir, not China’s control of parts of Arunachal Pradesh. The Indian Army Fact Check and ANI have also clarified that this is a deepfake video.",
+            "ratingValue": "1",
+            "worstRating": "1"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factly.in/this-video-attributing-remarks-on-chinas-control-of-arunachal-pradesh-to-lt-gen-girish-kalia-is-a-deepfake/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FACTLY",
+            "url": "https://factly.in/"
+          },
+          "claimReviewed": "A video showing Prime Minister Narendra Modi interacting with Congress leaders Mallikarjun Kharge, Rahul Gandhi, and Priyanka Gandhi Vadra at the wedding reception of NCP (SP) leader Supriya Sule’s daughter in August 2026.",
+          "datePublished": "2026-08-17",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/search/top/?q=%E0%A4%A6%E0%A4%BF%E0%A4%B2%E0%A5%8D%E0%A4%B2%E0%A5%80%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%B8%E0%A5%81%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%BF%E0%A4%AF%E0%A4%BE%20%E0%A4%B8%E0%A5%81%E0%A4%B2%E0%A5%87%20%E0%A4%95%E0%A5%80%20%E0%A4%AC%E0%A5%87%E0%A4%9F%E0%A5%80%20%E0%A4%95%E0%A5%87%20%E0%A4%B5%E0%A4%BF%E0%A4%B5%E0%A4%BE%E0%A4%B9%20%E0%A4%B8%E0%A4%AE%E0%A4%BE%E0%A4%B0%E0%A5%8B%E0%A4%B9%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%96%E0%A4%A1%E0%A4%BC%E0%A4%97%E0%A5%87%20%E0%A4%A8%E0%A5%87%20%E0%A4%AA%E0%A5%80%E0%A4%8F%E0%A4%AE%20%E0%A4%AE%E0%A5%8B%E0%A4%A6%E0%A5%80%20%E0%A4%AA%E0%A4%B0%20%E0%A4%9A%E0%A5%81%E0%A4%9F%E0%A4%95%E0%A5%80%20%E0%A4%B2%E0%A5%80"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social Media User"
+            },
+            "datePublished": "2026-08-12"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "MISLEADING",
+            "bestRating": "5",
+            "image": "https://factly.in/wp-content/uploads//2018/12/Misleading.png",
+            "ratingExplanation": "The viral video is old and unrelated to Supriya Sule’s daughter’s wedding reception. The visuals date back to at least March 2025 and were previously shared in connection with an event involving Union Minister Shivraj Singh Chouhan’s sons.",
+            "ratingValue": "2",
+            "worstRating": "1"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factly.in/an-old-video-of-pm-modi-interacting-with-congress-leaders-is-shared-with-false-claim-of-visuals-from-supriya-sules-daughters-wedding-reception/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Sri Lanka has officially banned the NS 200 motorcycle following a fatal crash in Katana.",
+          "datePublished": "2026-08-05",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://web.facebook.com/groups/LankaOnlineHelp/permalink/28353256830972503/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Viral social media posts"
+            },
+            "datePublished": "2026-08-05"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/a-false-posts-claiming-that-the-ns-200-motorcycle-was-banned-in-sri-lanka/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FACTLY",
+            "url": "https://factly.in/"
+          },
+          "claimReviewed": "The video shows BJP MP Kangana Ranaut being assaulted by a crowd following her remarks about the CJP protesters.",
+          "datePublished": "2026-08-04",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.instagram.com/p/DbfiYMVI6uo/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social Media User"
+            },
+            "datePublished": "2026-08-01"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "FALSE",
+            "bestRating": "5",
+            "image": "https://factly.in/wp-content/uploads//2018/12/False.png",
+            "ratingExplanation": "The viral video does not show BJP MP Kangana Ranaut being assaulted following her remarks about the CJP protesters. It depicts an unrelated incident involving Pranayita Das, Education Karmadhyaksha of the Jalpaiguri Zilla Parishad and daughter of senior Trinamool Congress (TMC) leader Krishna Das, who was allegedly assaulted by BJP workers outside the Jalpaiguri Kotwali Police Station after appearing there in compliance with a Calcutta High Court directive in connection with a post-poll violence investigation.",
+            "ratingValue": "1",
+            "worstRating": "1"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factly.in/this-viral-video-does-not-show-kangana-ranaut-being-assaulted-after-her-remarks-on-cjp-protesters/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Sri Lanka has gone from bankruptcy to the world's fourth-ranked country in two years, behind only the United States, China and Canada.",
+          "datePublished": "2026-08-03",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/share/p/1HJL9N1xyZ/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Viral social media posts"
+            },
+            "datePublished": "2026-08-03"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Misleading"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/misleading-claim-stating-sri-lanka-ranked-4th-globally-behind-us-china-and-canada/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "فکت‌نامه",
+            "url": "https://factnameh.com/"
+          },
+          "claimReviewed": "ویدیوی نوزادی که با سبیل متولد شد",
+          "datePublished": "2026-11-02",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "شبکه‌های اجتماعی"
+            }
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "نادرست"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factnameh.com/fa/fact-checks/2026-11-02-iran-newborn-baby-with-mustache-video-ai-generated"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "فکت‌نامه",
+            "url": "https://factnameh.com/"
+          },
+          "claimReviewed": "ویدیو با ادعای حمله به سفیر پاکستان در تهران",
+          "datePublished": "2026-11-02",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "شبکه‌های اجتماعی"
+            }
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "نادرست"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factnameh.com/fa/fact-checks/2026-11-02-iran-fake-video-pakistan-ambassador-attack-tehran"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "فکت‌نامه",
+            "url": "https://factnameh.com/"
+          },
+          "claimReviewed": "ادعای اصابت موشک به آبراهام لینکلن؛ شواهد چه می‌گویند؟",
+          "datePublished": "2026-10-30",
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "این ادعا در حالی مطرح می‌شود که نه از سوی ایران و نه در گزارش‌های مستقل و معتبر، هیچ مدرک قابل راستی‌آزمایی برای این ادعاها ارائه نشده است."
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factnameh.com/fa/fact-checks/2026-10-30-abraham-lincoln-missile-hit-claim-what-does-the-evidence-say"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "කිරිබත්ගොඩ ඤාණානන්ද හිමියන් මෑතක දී, මිසදිටු බල මැඩලිය හැකි සිංහල බෞද්ධ රජෙකු පතා ප්‍රාර්ථනයක් කළේය.",
+          "datePublished": "2026-11-02",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/reel/1172884262269895/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "සමාජ මාධ්‍ය පරිශීලකයින්"
+            },
+            "datePublished": "2026-11-01"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "සන්දර්භය රහිතයි / Missing Context"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/2026/11/02/kiribathgoda-gnanananda-thero-2019-speech-shared-as-new-missing-context/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "ඔක්තෝබර් 31 මධ්‍යම රාත්‍රියේ සිට ඔක්ටේන් 92 පෙට්‍රල් ලීටරයක් රු. 610 ක්, ඔක්ටේන් 95 රු. 720 ක් සහ ඔටෝ ඩීසල් රු. 600 ක් දක්වා ඉහළ ගිය බව ලංකා ඛනිජ තෙල් නීතිගත සංස්ථාව ප්‍රකාශ කළේය.",
+          "datePublished": "2026-11-02",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/groups/584362457085103/posts/1492025726318767/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "සමාජ මාධ්‍ය පරිශීලකයින්"
+            },
+            "datePublished": "2026-10-31"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "අසත්‍යයි / False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/2026/11/02/fuel-price-610-720-600-viral-post-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "\"நாடு மோசமான நிலைக்குச் செல்கிறது… நாட்டை நிர்வகிக்கும் திறமை அநுரவிற்கு இல்லை!\" என முன்னாள் ஜனாதிபதி கோட்டாபய ராஜபக்ஷ தெரிவித்தார்.",
+          "datePublished": "2026-10-31",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/kalmunaitoday.2025/posts/pfbid02PoQvKmJ47VfExiSg9x1XvKJJ3mpP6seJxSeDXyVANwXGrBt7Utyb1DiPvhAt4egtl"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "சமூக ஊடக பயனர்கள்"
+            },
+            "datePublished": "2026-10-25"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "பொய் / False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/tamil/did-gotabaya-rajapaksa-say-that-anura-lacks-the-ability-to-govern-the-country/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FACTLY",
+            "url": "https://factly.in/"
+          },
+          "claimReviewed": "అక్టోబర్ 2026లో అరుణాచల్ ప్రదేశ్ సరిహద్దు (LAC) వద్ద భారత, చైనా సైనికుల మధ్య జరిగిన ఘర్షణలకు సంబంధించిన దృశ్యాలు",
+          "datePublished": "2026-10-29",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/reel/1028581260251124/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social Media User"
+            },
+            "datePublished": "2026-10-25"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "MISLEADING",
+            "bestRating": "5",
+            "image": "https://factly.in/wp-content/uploads//2018/12/Misleading.png",
+            "ratingExplanation": "ఈ వైరల్ వీడియోలన్నీ పాతవి లేదా అక్టోబర్ 2026 నాటి ఘర్షణలకు సంబంధం లేనివి. ఇవి 2021, 2024, 2025 సంవత్సరాలకు చెందిన పాత ఘటనలు, జూలై 2026 నాటి అమర్‌నాథ్ యాత్రకు సంబంధించిన దృశ్యాలు.",
+            "ratingValue": "2",
+            "worstRating": "1"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factly.in/telugu-old-videos-are-being-shared-falsely-presented-as-footage-of-a-clash-between-india-and-china-in-arunachal-pradesh-in-october-2026/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Pancarta.pe",
+            "url": "https://www.pancarta.pe/"
+          },
+          "claimReviewed": "El consumo de carne o sangre de cuy ayuda a prevenir, controlar y combatir el cáncer debido a que contiene la enzima asparaginasa.",
+          "datePublished": "2026-10-21",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.infobae.com/peru/2023/07/14/cuy-el-super-alimento-peruano-con-nutrientes-que-combaten-el-cancer-y-la-anemia/"
+              },
+              {
+                "@type": "CreativeWork",
+                "url": "https://andina.pe/agencia/noticia-carne-y-sangre-cuy-ayudarian-a-controlar-enfermedades-cancerosas-477841.aspx"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Publicaciones en medios y redes sociales"
+            },
+            "datePublished": "2023-07-14"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Falso"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.pancarta.pe/red-amallulla/factchecking/la-carne-de-cuy-cura-el-cancer-es-falso-segun-evidencia-cientifica/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "BR24 #Faktenfuchs",
+            "url": "https://www.br.de/"
+          },
+          "claimReviewed": "Die Tetanus-Impfung eines ungeimpften Kindes mit einer Verletzung ist ein Kunstfehler. Es ist sinnvoller, fertige Antikörper zu geben, da die Schutzwirkung der Impfung erst nach vier bis sechs Wochen eintritt.",
+          "datePublished": "2026-10-23",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.instagram.com/reel/DdtU_0dTsb0/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ%3D%3D"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Bastian Hölscher."
+            },
+            "datePublished": "2026-09-25"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Falsch. Eine Impfung schützt auch nach einer Verletzung, da es in manchen Fällen mehrere Monate dauern kann, bis Tetanus ausbricht."
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.br.de/nachrichten/wissen/faktenfuchs-tetanus-impfung-hilft-auch-nach-verletzung,VYmb3zT#comments"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FactCheck.org",
+            "url": "https://www.factcheck.org/"
+          },
+          "claimReviewed": "“Today, on the CDC’s website right now, they list the 10 top advances — the 10 greatest advances in medical science. And one of them is abortion.\"",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "image": "https://cdn.factcheck.org/UploadedFiles/RFK-Jr.png",
+              "jobTitle": "HHS Secretary",
+              "name": "Robert F. Kennedy Jr."
+            },
+            "datePublished": "2025-08-28",
+            "firstAppearance": {
+              "@type": "CreativeWork",
+              "url": "https://www.foxnews.com/video/6377564991112"
+            },
+            "name": "Fox News interview"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False",
+            "image": "https://cdn.factcheck.org/UploadedFiles/false_widget.png",
+            "ratingExplanation": "The CDC's list of the top 10 public health achievements, which appears in an agency journal article, does not include abortion as a main entry."
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.factcheck.org/2025/08/rfk-jr-defends-ouster-of-cdc-director-by-distorting-list-of-public-health-achievements/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "PesaCheck",
+            "url": "https://pesacheck.org/"
+          },
+          "claimReviewed": "Claims that volcanic carbon dioxide emissions make the longest-running gas measurement inaccurate",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://x.com/peakaustria/status/1918628286420181355"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "@peakaustria"
+            },
+            "datePublished": "2025-05-03"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://pesacheck.org/false-a-nearby-volcano-does-not-make-the-flagship-observatorys-carbon-dioxide-measurements-0ccdebca930f"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fast Check CL",
+            "url": "https://www.fastcheck.cl/"
+          },
+          "claimReviewed": "Esta foto muestra a la expresidenta de Chile, Michelle Bachelet, bailando con el presidente de Venezuela, Nicolás Maduro. ",
+          "datePublished": "20204-08-02",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://x.com/canservero04/status/1818663889220874252"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Anónimo"
+            },
+            "datePublished": "2024-07-30"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Falso"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.fastcheck.cl/2024/08/02/imagen-michelle-bachelet-bailando-con-nicolas-maduro-falso/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "مرصد أخبار ميتر ",
+            "url": "https://akhbarmeter.org/"
+          },
+          "claimReviewed": "مقتل 2000 طالب فلسطيني تم تجنيدهم في صفوف حماس\n",
+          "datePublished": "2-12-30",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://twitter.com/abraham_rahil/status/1718594679875219677?s=20"
+              },
+              {
+                "@type": "CreativeWork",
+                "url": "https://twitter.com/Ronnyshalom/status/1718568724934844580?s=20"
+              },
+              {
+                "@type": "CreativeWork",
+                "url": "https://twitter.com/EdyCohen/status/1718612916771995920?s=20"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "إيدي كوهين - روني شالوم"
+            },
+            "datePublished": "2023-10-30"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "المتحدث باسم وزارة التربية والتعليم الفلسطينية \"صادق الخضور\" الذي أكد استشهاد 2000 طالب في غزة من طلاب المراحل التعليمية دون نسبهم إلى حركة حماس"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://akhbarmeter.org/topics/1818?fbclid=IwAR0Qih_S3KIeFtP1XBq1eIzJfGFNYphpfD312KWVurhsJbMo5rHNppnVePE"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Youturn",
+            "url": "https://youturn.in/"
+          },
+          "claimReviewed": "மத்தியப்பிரதேசம் மாநிலத்தில் கிறிஸ்டியன் சர்ச்-யில் நடைபெற்ற கூட்டத்தில் கலந்து கொண்ட ஹிந்து பெண்ணை உயிருடன் எரித்துக் கொன்றுள்ளனர்.",
+          "datePublished": "20190-02-21",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            }
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Fake"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://youturn.in/factcheck/hindu-girl-burn-alive.html"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Sunanda Naik",
+            "url": "https://newsmeter.in/"
+          },
+          "claimReviewed": "Colloidal siver is a cure for COVID-19",
+          "datePublished": "2923-01-02",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "Social Media User"
+            },
+            "datePublished": "2923-01-02"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "FALSE"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://newsmeter.in/fact-check-health/is-colloidal-silver-a-proven-cure-for-covid-19-explained-705962"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Viral images show NASA's Artemis II crew capsule re-entering and splashing down in the Pacific Ocean.",
+          "datePublished": "2026-04-15",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/spaceAstroVision/posts/pfbid0ZvR4KMZNT8fxVhupwPymPUKfqiMLBxfHvskrDDSGrv3iqJzrwQ8kbV6pf1yZASsGl"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Viral social media posts"
+            },
+            "datePublished": "2026-04-15"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Misleading"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/artemis-ii-splashdown-viral-images-ai-generated/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "High-dose vitamin D can help the body turn excess calories into muscle instead of fat.",
+          "datePublished": "2026-04-13",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/healthy.harbor1/posts/pfbid02HouKKS7XHR39S6ZhM7wSUhPNP4V7EGbQmZxNX62Xmzp9Np2HWpm9sRDeALscE7s1l"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Viral social media posts"
+            },
+            "datePublished": "2026-04-13"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Misleading"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/high-dose-vitamin-d-redirects-calories-to-muscle-fact-check/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Nanda Mallawarachchi, the third defendant in the Carrom Board case, was acquitted.",
+          "datePublished": "2026-04-06",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/share/p/1H23XVDdHk/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Viral social media posts"
+            },
+            "datePublished": "2026-04-06"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Misleading"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/former-sports-ministry-secretary-nanda-mallawarachchi-removed-from-carrom-board-case-not-an-acquittal/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Kashi Anubhav Yatra",
+            "url": "https://www.kashianubhavyatra.com/"
+          },
+          "datePublished": "2026-09-09",
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.kashianubhavyatra.com/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "url": "https://upgradeyourlifehack.blogspot.com/"
+          },
+          "claimReviewed": "Arup Pal",
+          "datePublished": "2026-10-10",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "Arup Pal"
+            }
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Google blog"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://upgradeyourlifehack.blogspot.com/2026/10/how-to-calm-your-mind-6-simple-habits%20.html"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "The Buddha Sasana Minister, Dr. Hiniduma Sunil Senevi, is a Catholic (\"Calvary Catholic\").",
+          "datePublished": "2026-10-30",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/ruwan.chamika/posts/pfbid06nhZHQtG3hyznGzfPaoTLk75AwMaNzaYT4CKGiqUDKeiWo2c23SuTUntDtcaamJ3l"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-20"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/buddhasasana-minister-catholic-ruwanweliseya-monument-claim-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "The Buddha Sasana Minister belittled Ruwanweli Maha Seya by calling it a \"monument\".",
+          "datePublished": "2026-10-30",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/reel/1638949360972341"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-20"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/buddhasasana-minister-catholic-ruwanweliseya-monument-claim-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Deutsche Welle",
+            "url": "https://www.dw.com/"
+          },
+          "claimReviewed": "\"The WHO appears to have updated its fact sheet on plague the same day the Irkutsk lab worker presented at hospital, with (probably) the plague.\" This claim appeared in a number of posts on X, with some users suggesting the timing indicates that the organization may have known something about the alleged case before it became public.",
+          "datePublished": "2026-10-06",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://x.com/irkutskplague/status/2106983296253222968?s=20"
+              }
+            ],
+            "datePublished": "2026-10-05"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "DW Fact check: Misleading  The World Health Organization (WHO) updated its plague fact sheet on the same day the Russian laboratory worker was hospitalized, but no evidence links the two events."
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.dw.com/en/russia-lab-worker-death-fact-check/a-79560752"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Deutsche Welle",
+            "url": "https://www.dw.com/"
+          },
+          "claimReviewed": " As news of the plague spreads, some old videos are being repurposed, adding to the disinformation. In one such video posted on X, a user claimed that the plague has also spread to other parts of Russia. The caption in Russian reads, \"The plague marches across Russia. God has heard our prayers!\"",
+          "datePublished": "2026-10-06",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://x.com/jonnymaks78/status/2106721161312632974"
+              }
+            ],
+            "datePublished": "2026-10-04"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "DW Fact check: Misleading  The video is old and unrelated to the current developments in Irkutsk. A reverse image search reveals that the video was initially posted on August 31 this year, claiming that it showed the Russian republic of Kabardino-Balkaria, a tourist destination around 6,000 kilometers (3,700 miiles)from Irkutsk."
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://www.dw.com/en/russia-lab-worker-death-fact-check/a-79560752"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "Video shows fish swimming in floodwater inside a house in Ratnapura during the Kalu Ganga floods.",
+          "datePublished": "2026-10-31",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/reel/1462146806034701/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-26"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "French police deployed a unit of pigs (a \"pig squad\") to control protesters in Paris.",
+          "datePublished": "2026-02-30",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://x.com/Kumar1975Rajesh/status/2113566258247651403"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-23"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/french-police-pig-squad-protesters-ai-video-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "VERA Files",
+            "url": "https://verafiles.org/"
+          },
+          "claimReviewed": "The Supreme Court awarded Sara Duterte as the \"most honest public servant\" of the year.",
+          "datePublished": "2026-11-03",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/share/p/1CFeFcNiD6/"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Facebook page Solid duterte fans club"
+            },
+            "datePublished": "2026-10-24"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "Fake",
+            "ratingExplanation": "The Supreme Court only confers awards to members of the judiciary. It recently  hosted the ceremony for  “Outstanding Filipinos” sponsored by a foundation, where an associate justice was a member of the panel of judges.\n"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://verafiles.org/articles/fact-check-supreme-court-did-not-name-sara-duterte-most-honest-public-servant"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "A video shows the last rites of Kawanthissa, the famous tusker from Galgamuwa, Sri Lanka.",
+          "datePublished": "2026-11-02",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-17"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/kawanthissa-last-rites-video-kerala-brahmadathan-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "A video shows Indian and Chinese troops exchanging fire in Arunachal Pradesh during the face-offs on the border.",
+          "datePublished": "2026-10-29",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-25"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "பொய் / False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/kazakhstan-training-video-india-china-fire-exchange-false/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo Sri Lanka",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "The Central Bank of Sri Lanka has introduced a new Rs. 10,000 currency note.",
+          "datePublished": "2026-10-27",
+          "itemReviewed": {
+            "@type": "Claim",
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-26"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "අසත්‍යයි / False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/has-the-central-bank-of-sri-lanka-introduced-a-new-rs-10000-currency-note/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "FACTLY",
+            "url": "https://factly.in/"
+          },
+          "claimReviewed": "The video shows residents of Arunachal Pradesh fighting with Chinese soldiers in October 2026.",
+          "datePublished": "2026-10-28",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/reel/29023619360656330"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social Media User"
+            },
+            "datePublished": "2026-10-27"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "The footage was shared widely in several versions and the people shown cannot be identified from it.",
+            "bestRating": "5",
+            "image": "https://factly.in/wp-content/uploads//2018/12/Misleading.png",
+            "ratingExplanation": "The video dates back to 23 May 2025 and shows a protest against the proposed Siang Dam project in Beging village, Siang district, Arunachal Pradesh, not residents fighting Chinese soldiers in October 2026. Arunachal Pradesh Police officer Sangay Tenzin confirmed to Factly that the uniformed personnel in the video are police officers and identified the officer seen in the video as DySP Toguam Gongo.",
+            "ratingValue": "2",
+            "worstRating": "1"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools API",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://factly.in/this-video-shows-a-confrontation-between-residents-of-arunachal-pradesh-and-police-during-a-2025-protest/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        {
+          "@context": "http://schema.org",
+          "@type": "ClaimReview",
+          "author": {
+            "@type": "Organization",
+            "name": "Fact Crescendo",
+            "url": "https://srilanka.factcrescendo.com/"
+          },
+          "claimReviewed": "President Anura Kumara Dissanayake was hospitalized due to a sudden illness, according to a Newsfirst post.",
+          "datePublished": "2026-10-27",
+          "itemReviewed": {
+            "@type": "Claim",
+            "appearance": [
+              {
+                "@type": "CreativeWork",
+                "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid02YGJtYsiCREDApZmsKCJtMUgDfnTC85qzf2do1FhwKQrw6jFiDhnc8qE6YifHXxGol&id=61574648106953"
+              }
+            ],
+            "author": {
+              "@type": "Person",
+              "name": "Social media users"
+            },
+            "datePublished": "2026-10-24"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "alternateName": "False"
+          },
+          "sdPublisher": {
+            "@type": "Organization",
+            "name": "Google Fact Check Tools",
+            "url": "https://g.co/factchecktools"
+          },
+          "url": "https://srilanka.factcrescendo.com/english/was-the-president-hospitalized-due-to-a-sudden-illness/"
+        }
+      ]
+    },
+    {
+      "@type": "DataFeedItem",
+      "dateCreated": "2026-11-02T00:00:00+00:00",
+      "item": [
+        "not-a-review"
+      ]
+    }
+  ]
+}

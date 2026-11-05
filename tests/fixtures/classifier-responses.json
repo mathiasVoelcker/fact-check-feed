@@ -1,0 +1,47 @@
+{
+  "_note": "Hand-written model answers in the shape the classifier receives (the `results` array of the JSON the model returns). They were NOT recorded from the live API (no credentials were available when this was written); the first live run with a Gemini key (task 8.2) is the first check of the real model's answers.",
+  "cases": [
+    {
+      "ratingText": "False",
+      "parsed": {
+        "category": "false",
+        "severity": 1
+      }
+    },
+    {
+      "ratingText": "பொய் / False",
+      "parsed": {
+        "category": "false",
+        "severity": 1
+      }
+    },
+    {
+      "ratingText": "Misleading",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "True",
+      "parsed": {
+        "category": "true",
+        "severity": 0
+      }
+    },
+    {
+      "ratingText": "DW Fact check: Misleading  The World Health Organization (WHO) updated its plague fact sheet on the same day the Russian laboratory worker was hospitalized, but no evidence links the two events.",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "The footage was shared widely in several versions and the people shown cannot be identified from it.",
+      "parsed": {
+        "category": "unclassifiable",
+        "severity": null
+      }
+    }
+  ]
+}
