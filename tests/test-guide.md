@@ -1,6 +1,6 @@
 # Test guide
 
-How to run the tests, what they cover, and what they deliberately do not touch. For the reasoning behind the strategy see decision D12 in `openspec/changes/ingest-data-commons-feed/design.md`.
+How to run the tests, what they cover, and what they deliberately do not touch. For the reasoning behind the strategy see decision D12 in `openspec/changes/archive/2026-11-07-ingest-data-commons-feed/design.md`.
 
 ## Running the tests
 
