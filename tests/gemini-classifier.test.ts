@@ -22,7 +22,7 @@ import {
 import { parseClassification } from "../src/classification/validate";
 import type { Classification } from "../src/classification/types";
 
-type RecordedCase = { ratingText: string; parsed: Classification };
+type RecordedCase = { ratingText: string; source: "recorded" | "hand-written"; origin: string; parsed: Classification };
 const recorded = (
   JSON.parse(
     readFileSync(fileURLToPath(new URL("./fixtures/classifier-responses.json", import.meta.url)), "utf8"),
@@ -164,6 +164,14 @@ describe("Gemini classifier: recorded answers", () => {
     const texts = ["True", "False", "Misleading"];
     const results = await classify(texts);
     expect(results.map((r) => r?.category)).toEqual(["true", "false", "misleading"]);
+  });
+
+  it("says for every case whether its answer was recorded from the real model or written by hand", () => {
+    for (const c of recorded) {
+      expect(["recorded", "hand-written"], c.ratingText.slice(0, 40)).toContain(c.source);
+      expect(c.origin, c.ratingText.slice(0, 40)).toBeTruthy();
+    }
+    expect(recorded.filter((c) => c.source === "recorded").length).toBeGreaterThan(0);
   });
 
   it.each(recorded.map((c) => [c.ratingText.slice(0, 40), c.parsed] as const))("every recorded answer for %j is a valid classification", (_name, parsed) => {

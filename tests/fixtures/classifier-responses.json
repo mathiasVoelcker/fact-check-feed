@@ -1,43 +1,199 @@
 {
-  "_note": "Hand-written model answers in the shape the classifier receives (the `results` array of the JSON the model returns). They were NOT recorded from the live API (no credentials were available when this was written); the first live run with a Gemini key (task 8.2) is the first check of the real model's answers.",
+  "_note": "Model answers in the shape the classifier receives (the `results` array of the JSON the model returns). Each case says in `source` whether the answer was `recorded` from the real model (gemini:gemini-3.5-flash-lite:prompt-v1) or `hand-written`. Recorded cases came from the rating_classifications table after the first successful ingestion run. A recording is a snapshot: the model may answer slightly differently on another day.",
   "cases": [
     {
+      "ratingText": "DW Fact check: False. According to the Michigan Voter Information Center, Michigan has approximately 7.3 million active registered voters, while El-Sayed received 743,455 votes statewide in the Democratic Senate primary, not 1.4 million votes in Detroit alone.",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "false",
+        "severity": 1
+      }
+    },
+    {
+      "ratingText": "FAKE",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "false",
+        "severity": 1
+      }
+    },
+    {
+      "ratingText": "FALSE",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "false",
+        "severity": 1
+      }
+    },
+    {
+      "ratingText": "Fake",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "false",
+        "severity": 1
+      }
+    },
+    {
       "ratingText": "False",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
       "parsed": {
         "category": "false",
         "severity": 1
       }
     },
     {
-      "ratingText": "பொய் / False",
+      "ratingText": "false",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
       "parsed": {
         "category": "false",
         "severity": 1
       }
     },
     {
-      "ratingText": "Misleading",
+      "ratingText": "ALTERED",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
       "parsed": {
         "category": "misleading",
         "severity": 0.7
       }
     },
     {
+      "ratingText": "Altered",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "DW Fact check: Misleading  The video is old and unrelated to the current developments in Irkutsk. A reverse image search reveals that the video was initially posted on August 31 this year, claiming that it showed the Russian republic of Kabardino-Balkaria, a tourist destination around 6,000 kilomete",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "MISLEADING",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "MISSING CONTEXT",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "Misleading",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "Missing Context",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "Missing context",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "Needs context",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "Not the whole story",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.7
+      }
+    },
+    {
+      "ratingText": "Satire",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "misleading",
+        "severity": 0.6
+      }
+    },
+    {
+      "ratingText": "Unsupported",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "unproven",
+        "severity": 0.3
+      }
+    },
+    {
+      "ratingText": "QA test only",
+      "source": "recorded",
+      "origin": "rating_classifications table, from the first successful ingestion run",
+      "parsed": {
+        "category": "unclassifiable",
+        "severity": null
+      }
+    },
+    {
+      "ratingText": "பொய் / False",
+      "source": "recorded",
+      "origin": "one-off test call to gemini-3.5-flash-lite (text not in the ingested window)",
+      "parsed": {
+        "category": "false",
+        "severity": 1
+      }
+    },
+    {
       "ratingText": "True",
+      "source": "hand-written",
+      "origin": "not in the ingested data; the model has not been asked about it",
       "parsed": {
         "category": "true",
         "severity": 0
       }
     },
     {
-      "ratingText": "DW Fact check: Misleading  The World Health Organization (WHO) updated its plague fact sheet on the same day the Russian laboratory worker was hospitalized, but no evidence links the two events.",
-      "parsed": {
-        "category": "misleading",
-        "severity": 0.7
-      }
-    },
-    {
       "ratingText": "The footage was shared widely in several versions and the people shown cannot be identified from it.",
+      "source": "hand-written",
+      "origin": "not in the ingested data; the model has not been asked about it",
       "parsed": {
         "category": "unclassifiable",
         "severity": null

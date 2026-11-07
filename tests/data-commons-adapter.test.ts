@@ -188,4 +188,14 @@ describe("Data Commons adapter: tolerating missing parts", () => {
     await writeFile(garbage, "<html>not json</html>");
     await expect(collect(garbage)).rejects.toThrow();
   });
+
+  it("fails when the feed has elements but not a single review", async () => {
+    const renamed = join(workDir, "renamed-items.json");
+    await writeFile(renamed, JSON.stringify({ dataFeedElement: [{ itemRenamed: [{ claimReviewed: "x" }] }] }));
+    await expect(collect(renamed)).rejects.toThrow(/no reviews/i);
+
+    const empty = join(workDir, "empty-items.json");
+    await writeFile(empty, JSON.stringify({ dataFeedElement: [{ item: [] }, { item: ["not-a-review"] }] }));
+    await expect(collect(empty)).rejects.toThrow(/no reviews/i);
+  });
 });

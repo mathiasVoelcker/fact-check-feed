@@ -16,11 +16,25 @@ export type RequiredFieldsReview = {
 
 const isBlank = (value: string | undefined): value is undefined => value === undefined || value.trim() === "";
 
-/** Checks the required parts in the order claim text, URL, publisher, rating text. The date is judged separately. */
+/** The link back to the original fact-check must be an absolute http(s) URL, so it is safe to render as a link. */
+function isHttpUrl(value: string): boolean {
+  if (!/^https?:\/\//i.test(value)) return false;
+  try {
+    new URL(value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Checks the required parts in the order claim text, URL, publisher, rating text. The date is judged separately.
+ * A URL that is not an absolute http(s) URL counts as missing.
+ */
 export function requireFields(review: RawReview): StageResult<RequiredFieldsReview> {
   const { claimText, url, publisher, ratingText, publishedDate } = review;
   if (isBlank(claimText)) return { ok: false, reason: "missing-claim-text" };
-  if (isBlank(url)) return { ok: false, reason: "missing-url" };
+  if (isBlank(url) || !isHttpUrl(url)) return { ok: false, reason: "missing-url" };
   if (isBlank(publisher)) return { ok: false, reason: "missing-publisher" };
   if (isBlank(ratingText)) return { ok: false, reason: "missing-rating-text" };
   return {

@@ -49,7 +49,7 @@ File names are `<name>.test.ts`.
 
 - `fixtures/claimreview-sample.json`: 54 reviews trimmed from the real feed, plus a few hand-made edge cases (missing URL, impossible date, and so on). `fixtures/NOTICE.md` explains which entries are derived. The data comes from Data Commons under CC BY 4.0.
 - `fixtures/language-labeled.json`: 165 claims labeled English or not, used for the language-detection accuracy test.
-- `fixtures/classifier-responses.json`: model answers **written by hand**, not recorded from the real model.
+- `fixtures/classifier-responses.json`: model answers for rating texts. Most were **recorded** from the real Gemini model (taken from the `rating_classifications` table after the first successful ingestion run); two are **hand-written** because those texts have not been in the ingested data. Each case has a `source` field saying which.
 - `support/db.ts`: starts a fresh PGlite database with the migrations applied.
 - `support/feed-server.ts`: the local stub server that replaces the live feed.
 - `support/fixture.ts`, `support/ingestion.ts`: load the fixture and build a ready-to-use test harness for a whole run.
@@ -66,6 +66,6 @@ When you add a scenario to a spec, add a line for it in that file's `COVERAGE` t
 
 ## Known gaps
 
-- The classifier prompt has not been tried against the real model. The classifier tests use the hand-written answers above, so they prove the plumbing (validation, caching, failure handling, and that only the rating text is sent), not the model's judgment. Only a real run with an `GEMINI_API_KEY` shows that.
-- The GitHub Actions workflow file is tested for its structure and for the absence of secrets, but it has not yet passed `actionlint` or run on GitHub.
+- No automated test checks the model's judgment. The prompt was tried against the real model once, by hand, in the first live ingestion run (the answers are recorded in the fixture). The classifier tests replay those recorded answers, so they prove the plumbing (validation, caching, failure handling, and that only the rating text is sent). If the model or prompt changes, run a live ingestion and check the `rating_classifications` table.
+- The GitHub Actions workflow file is tested only for its structure and the absence of secrets. It passes `actionlint` and has been run once on GitHub, but a scheduled run is not covered by any test.
 - There are no browser tests (Playwright). They arrive with the UI change.

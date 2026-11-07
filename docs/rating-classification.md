@@ -58,5 +58,5 @@ They are rebuilt on the next run.
 
 ### Testing
 
-No test calls a model. The classifier is given a client object, and tests pass a fake one that returns recorded
-answers (`tests/fixtures/classifier-responses.json`). The real client is built only by the ingest script.
+No test calls a model. The classifier is given a client object, and tests pass a fake one that replays answers
+(`tests/fixtures/classifier-responses.json`), most of them recorded from the real model. The real client is built only by the ingest script.

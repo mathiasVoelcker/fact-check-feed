@@ -63,7 +63,8 @@ never written to the repository.
 - **Ratings that could not be classified** are stored as `unclassifiable` for this run, are not cached, and are retried
   by the next run. The report counts them and the run prints a warning.
 - **A malformed entry in the snapshot** is counted under `malformed` and skipped; the rest of the run carries on.
-- **The feed format changed.** If the structure is no longer a feed, the run fails with an error and stores nothing.
+- **The feed format changed.** If the snapshot contains no reviews at all (the structure is no longer a feed, or every entry is malformed), the run fails with an error and stores nothing, including no deletions.
+- **A review whose URL is not an absolute http(s) link** is counted under `missing-url` and skipped.
 
 ## Decisions to revisit
 

@@ -239,4 +239,22 @@ describe("ingestion: failures leave the data unchanged", () => {
       })(),
     ).resolves.toBeUndefined();
   });
+
+  it("fails the run, and keeps old rows, when the feed has entries but no reviews (changed structure)", async () => {
+    await seed({ url: "https://example.org/kept", publishedOn: "2026-10-20" });
+    await seed({ url: "https://example.org/would-age-out", publishedOn: "2026-01-01" });
+    const before = await allClaims();
+
+    const renamed = await createHarness(Buffer.from(JSON.stringify({ dataFeedElement: [{ itemRenamed: [{ claimReviewed: "x" }] }, { itemRenamed: [] }] })));
+    try {
+      await renamed.db.insert(claims).values(before.map(({ id: _id, ...rest }) => rest));
+      await expect(renamed.ingest()).rejects.toThrow(/no reviews/i);
+      expect((await renamed.db.select().from(claims).orderBy(asc(claims.url))).map(({ id: _id, ...rest }) => rest)).toEqual(
+        before.map(({ id: _id, ...rest }) => rest),
+      );
+      expect(await readdir(renamed.tmpDir)).toEqual([]);
+    } finally {
+      await renamed.close();
+    }
+  });
 });

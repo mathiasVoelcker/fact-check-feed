@@ -41,6 +41,18 @@ describe("required fields", () => {
     expect(requireFields({ ...complete, url: "" })).toEqual({ ok: false, reason: "missing-url" });
   });
 
+  it.each(["javascript:alert(1)", "data:text/html,x", "ftp://example.org/x", "/relative/path", "example.org/check", " https://example.org/x", "https://"])(
+    "treats %j as a missing URL, because only absolute http(s) links are kept",
+    (url) => {
+      expect(requireFields({ ...complete, url })).toEqual({ ok: false, reason: "missing-url" });
+    },
+  );
+
+  it("accepts http and https URLs", () => {
+    expect(requireFields({ ...complete, url: "http://example.org/a?b=1#c" }).ok).toBe(true);
+    expect(requireFields({ ...complete, url: "HTTPS://example.org/a" }).ok).toBe(true);
+  });
+
   it("reports the first missing field when several are missing, in the order claim, URL, publisher", () => {
     expect(requireFields({})).toEqual({ ok: false, reason: "missing-claim-text" });
     expect(requireFields({ claimText: "A claim" })).toEqual({ ok: false, reason: "missing-url" });

@@ -22,3 +22,5 @@ feed-snapshot*
 *.log
 .DS_Store
 .neon
+
+personalNotes.txt

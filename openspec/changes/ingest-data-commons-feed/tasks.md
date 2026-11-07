@@ -53,7 +53,7 @@
 ## 8. Scheduling
 
 - [x] 8.1 Add the GitHub Actions workflow with a weekly cron and manual dispatch that runs `npm run ingest` using repository secrets and writes the run report to the workflow summary; verify the workflow file passes `actionlint` and contains no secret values
-- [ ] 8.2 Run the workflow once manually against the real feed and database; verify the run report shows plausible counts (about 300 English records in the window) and that the table contains no unexpected columns or article text
+- [x] 8.2 Run the workflow once manually against the real feed and database; verify the run report shows plausible counts (about 300 English records in the window) and that the table contains no unexpected columns or article text
 
 ## 9. Integration check
 

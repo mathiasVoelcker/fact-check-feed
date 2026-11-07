@@ -40,19 +40,24 @@ function mapReview(item: Json): RawReview {
 
 async function* parseSnapshot(path: string): AsyncGenerator<ParsedEntry> {
   const elements = chain([createReadStream(path), parser(), pick({ filter: "dataFeedElement" }), streamArray()]);
-  let seenElements = 0;
+  let reviewCount = 0;
   for await (const { value } of elements as AsyncIterable<{ value: unknown }>) {
-    seenElements++;
     const items = isObject(value) ? value.item : undefined;
     if (!Array.isArray(items)) {
       yield { kind: "malformed" };
       continue;
     }
     for (const item of items) {
-      yield isObject(item) ? { kind: "review", review: mapReview(item) } : { kind: "malformed" };
+      if (!isObject(item)) {
+        yield { kind: "malformed" };
+        continue;
+      }
+      reviewCount++;
+      yield { kind: "review", review: mapReview(item) };
     }
   }
-  if (seenElements === 0) throw new Error("Not a valid feed: no dataFeedElement entries found");
+  // A feed without a single review (a changed structure, for example) must fail the run, not store nothing.
+  if (reviewCount === 0) throw new Error("Not a valid feed: no reviews found in dataFeedElement[].item[]");
 }
 
 export type DataCommonsAdapterOptions = {
