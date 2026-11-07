@@ -1,5 +1,0 @@
-to run ingestion: npm run ingest
-
-where is the database?
-what is the allowlist?
-what is data common?
