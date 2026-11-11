@@ -55,8 +55,17 @@ export function Cards({ rows }: { rows: Row[] }) {
               <span style={{ color: "#666", fontSize: 13 }}>rated "{r.rating_text}"</span>
             </div>
             <p style={{ margin: "4px 0 8px", fontSize: 17 }}>{r.claim_text}</p>
+            {r.rating_explanation && (
+              <p style={{ margin: "0 0 8px", fontSize: 14, color: "#333", background: "#f6f6f6", padding: "8px 10px", borderRadius: 4, whiteSpace: "pre-line" }}>
+                <strong>Why: </strong>
+                {r.rating_explanation}
+              </p>
+            )}
             <div style={{ color: "#666", fontSize: 13 }}>
-              {r.publisher} · {r.published_on} · <a href={r.url} rel="noopener noreferrer" target="_blank">Read the fact-check</a>
+              {r.publisher} · {r.published_on} ·{" "}
+              <a href={r.url} rel="noopener noreferrer" target="_blank">
+                {r.rating_explanation ? "Read the full fact-check" : `Read why at ${r.publisher}`}
+              </a>
             </div>
           </article>
         ))}
@@ -82,7 +91,15 @@ export function Table({ rows }: { rows: Row[] }) {
             <tr key={r.id} style={{ borderBottom: "1px solid #eee", verticalAlign: "top" }}>
               <td style={{ padding: "6px 8px 6px 0", whiteSpace: "nowrap" }}>{r.published_on}</td>
               <td style={{ padding: 6 }}><span style={badge(r.category)}>{r.category}</span></td>
-              <td style={{ padding: 6 }}><a href={r.url} rel="noopener noreferrer" target="_blank">{r.claim_text}</a></td>
+              <td style={{ padding: 6 }}>
+                <a href={r.url} rel="noopener noreferrer" target="_blank">{r.claim_text}</a>
+                {r.rating_explanation && (
+                  <details style={{ marginTop: 4, color: "#444" }}>
+                    <summary style={{ cursor: "pointer", color: "#666", fontSize: 12 }}>Why?</summary>
+                    <div style={{ whiteSpace: "pre-line", fontSize: 13, paddingTop: 4 }}>{r.rating_explanation}</div>
+                  </details>
+                )}
+              </td>
               <td style={{ padding: 6, color: "#666" }}>{r.publisher}</td>
             </tr>
           ))}
@@ -125,6 +142,12 @@ export function Grouped({ rows }: { rows: Row[] }) {
                   <span style={badge(r.category)}>{r.category}</span>{" "}
                   <a href={r.url} rel="noopener noreferrer" target="_blank">{r.claim_text}</a>{" "}
                   <span style={{ color: "#888", fontSize: 12 }}>{r.publisher}</span>
+                  {r.rating_explanation && (
+                    <div style={{ color: "#555", fontSize: 13, margin: "2px 0 0" }}>
+                      {r.rating_explanation.replace(/\s+/g, " ").slice(0, 160)}
+                      {r.rating_explanation.length > 160 ? "…" : ""}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

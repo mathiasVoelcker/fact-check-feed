@@ -9,6 +9,7 @@ export type Row = {
   url: string;
   claim_text: string;
   rating_text: string;
+  rating_explanation: string | null;
   publisher: string;
   published_on: string;
   category: string;
