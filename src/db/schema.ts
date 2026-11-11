@@ -14,6 +14,8 @@ export const claims = pgTable("claims", {
   url: text().notNull().unique(),
   claimText: text("claim_text").notNull(),
   ratingText: text("rating_text").notNull(),
+  /** The publisher's explanation of the rating, capped (design E1); null when the feed gave none. */
+  ratingExplanation: text("rating_explanation"),
   publisher: text().notNull(),
   publishedOn: date("published_on", { mode: "string" }).notNull(),
   sourceId: text("source_id").notNull(),

@@ -1,4 +1,5 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
@@ -33,6 +34,28 @@ const COVERAGE: Record<string, [file: string, title: string][]> = {
   "claim-ingestion :: Only permitted fields are stored": [
     ["legal", "has exactly the permitted columns in the claims table"],
     ["legal", "stores no article text and no other feed field in any value"],
+  ],
+  "claim-ingestion :: Explanation is stored": [
+    ["data-commons-adapter", "maps reviewRating.ratingExplanation, exactly as written"],
+    ["rating-explanation", "stores the explanation of reviews that carry one, and nothing for the others"],
+  ],
+  "claim-ingestion :: Missing or blank explanation": [
+    ["data-commons-adapter", "maps no explanation when it is missing, blank or not a string"],
+    ["filter-entries", "keeps a review without an explanation and counts no exclusion for it"],
+    ["rating-explanation", "does not count a review without an explanation as excluded"],
+  ],
+  "claim-ingestion :: Long explanation is cut": [
+    ["explanation-cap", "cuts a longer text at a word boundary and ends it with an ellipsis, at most 1000 characters in total"],
+    ["rating-explanation", "is stored cut to at most 1000 characters, ending in an ellipsis"],
+  ],
+  "claim-ingestion :: Explanation follows the feed on re-run": [
+    ["rating-explanation", "replaces a stored explanation with the feed's on a re-run, and clears one the feed no longer has"],
+  ],
+  "claim-ingestion :: Removed explanation is cleared": [
+    ["rating-explanation", "replaces a stored explanation with the feed's on a re-run, and clears one the feed no longer has"],
+  ],
+  "claim-ingestion :: Explanation never reaches the classifier": [
+    ["rating-explanation", "gives the classifier rating texts only, never an explanation"],
   ],
   "claim-ingestion :: Publisher site is never contacted": [["legal", "requests nothing but the feed itself during a whole run"]],
   "claim-ingestion :: Name variants stay distinct": [
@@ -90,25 +113,35 @@ const COVERAGE: Record<string, [file: string, title: string][]> = {
 const CAPABILITIES = ["source-allowlist", "claim-ingestion", "rating-classification"];
 const here = (relative: string) => fileURLToPath(new URL(relative, import.meta.url));
 
-/** The specs live in the change until it is archived, and in the main specs afterwards. */
-function specPath(capability: string): string {
-  const candidates = [
-    here(`../openspec/changes/ingest-data-commons-feed/specs/${capability}/spec.md`),
-    here(`../openspec/specs/${capability}/spec.md`),
-  ];
-  const found = candidates.find(existsSync);
-  if (!found) throw new Error(`No spec found for ${capability}; looked in ${candidates.join(" and ")}`);
+/**
+ * The scenarios of a capability: those in the main spec, plus those in the delta specs of changes that are still
+ * in progress (they reach the main spec when the change is archived, and are then counted once).
+ */
+function specPaths(capability: string): string[] {
+  const changesDir = here("../openspec/changes/");
+  const deltas = readdirSync(changesDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && entry.name !== "archive")
+    .map((entry) => join(changesDir, entry.name, "specs", capability, "spec.md"))
+    .filter(existsSync);
+  const main = here(`../openspec/specs/${capability}/spec.md`);
+  const found = [...(existsSync(main) ? [main] : []), ...deltas];
+  if (found.length === 0) throw new Error(`No spec found for ${capability}`);
   return found;
 }
 
-const scenariosOf = (capability: string) =>
-  [...readFileSync(specPath(capability), "utf8").matchAll(/^#### Scenario: (.+)$/gm)].map((match) => `${capability} :: ${match[1]!.trim()}`);
+const scenariosOf = (capability: string) => [
+  ...new Set(
+    specPaths(capability).flatMap((path) =>
+      [...readFileSync(path, "utf8").matchAll(/^#### Scenario: (.+)$/gm)].map((match) => `${capability} :: ${match[1]!.trim()}`),
+    ),
+  ),
+];
 
 const specScenarios = CAPABILITIES.flatMap(scenariosOf);
 
 describe("spec scenario coverage", () => {
   it("finds the scenarios of all three specs", () => {
-    expect(specScenarios.length).toBe(47);
+    expect(specScenarios.length).toBe(53);
   });
 
   it("maps every scenario in the specs to at least one test", () => {

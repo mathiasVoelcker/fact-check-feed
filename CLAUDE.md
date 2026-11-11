@@ -23,7 +23,7 @@ Use Node 24: `source ~/.nvm/nvm.sh; nvm use 24` (use `;`, not `&&`, after `sourc
 
 ## Rules
 
-- **Legal:** store only claim text, rating text, publisher, date and the link back. Never store article text, never
+- **Legal:** store only claim text, rating text, publisher, date and the link back, plus the publisher's rating explanation when the feed has one, capped at 1000 characters (`src/pipeline/explanation.ts`). Never store article text, never
   contact publisher sites, and fetch only sources on the allowlist (`src/allowlist/allowlist.ts`).
 - **The LLM sees only rating text**, never claims, URLs or publishers.
 - **Secrets** live in `.env` (gitignored) and GitHub repository secrets. Never print, log or commit a key or

@@ -1,0 +1,1 @@
+ALTER TABLE "claims" ADD COLUMN "rating_explanation" text;

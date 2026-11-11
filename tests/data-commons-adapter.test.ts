@@ -58,10 +58,11 @@ describe("Data Commons adapter: mapping the fixture", () => {
     });
   });
 
-  it("returns exactly the five neutral fields and nothing else", async () => {
+  it("returns exactly the five neutral fields plus the optional rating explanation, and nothing else", async () => {
     const reviews = reviewsOf(await collect(FIXTURE_PATH));
     for (const review of reviews) {
-      expect(Object.keys(review).every((key) => ["claimText", "ratingText", "publisher", "publishedDate", "url"].includes(key))).toBe(true);
+      const allowed = ["claimText", "ratingText", "publisher", "publishedDate", "url", "ratingExplanation"];
+      expect(Object.keys(review).every((key) => allowed.includes(key))).toBe(true);
     }
   });
 
@@ -78,8 +79,39 @@ describe("Data Commons adapter: mapping the fixture", () => {
   });
 });
 
+describe("Data Commons adapter: rating explanation", () => {
+  const feedItem = (reviewRating: Record<string, unknown>) => ({
+    "@type": "ClaimReview",
+    author: { name: "Example Checker" },
+    claimReviewed: "A claim",
+    datePublished: "2026-10-30",
+    url: "https://example.org/check/1",
+    reviewRating: { alternateName: "False", ...reviewRating },
+  });
+
+  it("maps reviewRating.ratingExplanation, exactly as written", async () => {
+    const path = await writeFeed("explanation.json", [feedItem({ ratingExplanation: "  Global indices show otherwise.\nSee the table. " })]);
+    expect(reviewsOf(await collect(path))).toMatchObject([{ ratingExplanation: "  Global indices show otherwise.\nSee the table. " }]);
+  });
+
+  it("maps no explanation when it is missing, blank or not a string", async () => {
+    const path = await writeFeed("no-explanation.json", [
+      feedItem({}),
+      feedItem({ ratingExplanation: "   " }),
+      feedItem({ ratingExplanation: 42 }),
+    ]);
+    for (const review of reviewsOf(await collect(path))) expect(review).not.toHaveProperty("ratingExplanation");
+  });
+
+  it("finds the explanation on the fixture reviews that carry one, and leaves the others without it", async () => {
+    const reviews = reviewsOf(await collect(FIXTURE_PATH));
+    expect(reviews.filter((r) => r.ratingExplanation !== undefined)).toHaveLength(14);
+    expect(reviews.filter((r) => r.publisher === "Fact Crescendo Sri Lanka").every((r) => r.ratingExplanation === undefined)).toBe(true);
+  });
+});
+
 describe("Data Commons adapter: ignored feed fields", () => {
-  it("ignores explanations, images, appearance links and other extra fields", async () => {
+  it("ignores the review body, images, appearance links and other extra fields", async () => {
     const path = await writeFeed("extras.json", [
       {
         "@type": "ClaimReview",

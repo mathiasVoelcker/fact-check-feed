@@ -31,6 +31,7 @@ function mapReview(item: Json): RawReview {
   const fields = {
     claimText: text(item.claimReviewed),
     ratingText: text(rating?.alternateName),
+    ratingExplanation: text(rating?.ratingExplanation),
     publisher: text(author?.name),
     publishedDate: text(item.datePublished),
     url: text(item.url),

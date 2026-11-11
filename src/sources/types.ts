@@ -9,6 +9,8 @@ export type RawReview = {
   /** The published date exactly as the source wrote it; it is parsed and validated downstream. */
   publishedDate?: string;
   url?: string;
+  /** The publisher's explanation of the rating, exactly as written; it is capped downstream, and absent when blank. */
+  ratingExplanation?: string;
 };
 
 /** What an adapter yields per feed entry; a malformed entry is counted by the pipeline and skipped. */

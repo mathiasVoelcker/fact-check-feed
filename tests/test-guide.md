@@ -10,7 +10,7 @@ You need Node 24 (`nvm use 24`; the version is pinned in `.nvmrc`) and `npm inst
 npm test
 ```
 
-This runs `vitest run` over `tests/**/*.test.ts`: about 20 files and 325 tests.
+This runs `vitest run` over `tests/**/*.test.ts`: about 22 files and 380 tests.
 
 | Goal                         | Command                                                      |
 | ---------------------------- | ------------------------------------------------------------ |
@@ -36,9 +36,9 @@ The suite is limited to 2 workers and has generous timeouts (30 s per test, 60 s
 | Allowlist            | `allowlist`, `allowlist-guard`                                                                |
 | Database schema      | `schema`                                                                                      |
 | Data Commons adapter | `data-commons-adapter`, `data-commons-adapter-memory`, `data-commons-fetch`                   |
-| Filters              | `filter-required-fields`, `filter-dates`, `filter-entries`, `language`                        |
+| Filters              | `filter-required-fields`, `filter-dates`, `filter-entries`, `explanation-cap`, `language`     |
 | Classification       | `classification`, `gemini-classifier`                                                      |
-| Whole pipeline       | `ingestion`, `legal`, `cli`                                                                   |
+| Whole pipeline       | `ingestion`, `rating-explanation`, `legal`, `cli`                                             |
 | Docs and workflow    | `docs`, `workflow`                                                                            |
 | Spec coverage        | `spec-coverage`                                                                               |
 | Setup checks         | `placeholder`, `fixtures`                                                                     |
@@ -56,13 +56,13 @@ File names are `<name>.test.ts`.
 
 ## The spec-coverage test
 
-`spec-coverage.test.ts` reads every `#### Scenario:` in the three specs and checks that a test is mapped to it. It fails when:
+`spec-coverage.test.ts` reads every `#### Scenario:` in the three specs, including the delta specs of changes still in progress, and checks that a test is mapped to it. It fails when:
 
 - a scenario has no mapped test,
 - a mapping names a scenario that no longer exists, or
 - a mapped test has been renamed or removed.
 
-When you add a scenario to a spec, add a line for it in that file's `COVERAGE` table. Also update the expected scenario count in the test.
+When you add a scenario to a spec, add a line for it in that file's `COVERAGE` table. Also update the expected scenario count in the test. A scenario in an active change's delta spec counts as soon as it is written, and is counted once after the change is archived.
 
 ## Known gaps
 

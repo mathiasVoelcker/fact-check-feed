@@ -207,3 +207,32 @@ describe("filterEntries over the recorded fixture", () => {
     expect(records.every((r) => /^[\x20-\x7E‘-”–—… ]+$/.test(r.claimText))).toBe(true);
   });
 });
+
+describe("filterEntries: rating explanation", () => {
+  it("carries the explanation onto the kept record", async () => {
+    const result = await run([review({ ratingExplanation: "Global indices show otherwise." })]);
+    expect(result.records).toMatchObject([{ ratingExplanation: "Global indices show otherwise." }]);
+  });
+
+  it("caps a long explanation", async () => {
+    const result = await run([review({ ratingExplanation: "word ".repeat(400) })]);
+    const stored = result.records[0]?.ratingExplanation ?? "";
+    expect(stored.length).toBeLessThanOrEqual(1000);
+    expect(stored.endsWith("…")).toBe(true);
+  });
+
+  it("keeps a review without an explanation and counts no exclusion for it", async () => {
+    const result = await run([review(), review({ url: "https://example.org/check/2", ratingExplanation: "Because." })]);
+    expect(result.records).toHaveLength(2);
+    expect(result.records.find((r) => r.url === "https://example.org/check/1")?.ratingExplanation).toBeUndefined();
+    expect(result.read).toBe(2);
+    expect(Object.values(result.counts).reduce((sum, n) => sum + n, 0)).toBe(0);
+  });
+
+  it("lets the last review for a URL win, including when it has no explanation", async () => {
+    const url = "https://example.org/same";
+    const result = await run([review({ url, ratingExplanation: "Older explanation." }), review({ url })]);
+    expect(result.records).toHaveLength(1);
+    expect(result.records[0]?.ratingExplanation).toBeUndefined();
+  });
+});

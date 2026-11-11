@@ -6,12 +6,13 @@ import { claims } from "../src/db/schema";
 import { createDataCommonsAdapter } from "../src/sources/data-commons/adapter";
 import { type Harness, createHarness } from "./support/ingestion";
 
-/** The columns a stored record may have: the permitted feed fields, the derived rating fields, and technical ones. */
+/** The columns a stored record may have: the permitted feed fields (the rating explanation is optional), the derived rating fields, and technical ones. */
 const PERMITTED_COLUMNS = [
   "id",
   "url",
   "claim_text",
   "rating_text",
+  "rating_explanation",
   "publisher",
   "published_on",
   "source_id",

@@ -1,5 +1,6 @@
 import type { ParsedEntry } from "../sources/types";
 import { type ExclusionCounts, countExclusion, createExclusionCounts } from "./exclusions";
+import { capExplanation } from "./explanation";
 import { checkDate, requireFields } from "./filters";
 import { isEnglish as defaultIsEnglish } from "./language";
 
@@ -10,6 +11,8 @@ export type FilteredRecord = {
   ratingText: string;
   publisher: string;
   publishedOn: string;
+  /** The publisher's explanation of the rating, capped; absent when the feed gave none. */
+  ratingExplanation?: string;
 };
 
 export type FilterOptions = {
@@ -63,7 +66,15 @@ export async function filterEntries(
     }
 
     if (byUrl.delete(url)) countExclusion(counts, "duplicate-url");
-    byUrl.set(url, { url, claimText, ratingText, publisher, publishedOn: date.value.publishedOn });
+    const { ratingExplanation } = entry.review;
+    byUrl.set(url, {
+      url,
+      claimText,
+      ratingText,
+      publisher,
+      publishedOn: date.value.publishedOn,
+      ...(ratingExplanation === undefined ? {} : { ratingExplanation: capExplanation(ratingExplanation) }),
+    });
   }
 
   return { records: [...byUrl.values()], read, counts };

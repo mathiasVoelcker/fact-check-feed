@@ -60,8 +60,8 @@ flowchart LR
 
 1. **Allowlist check.** Only sources listed in `src/allowlist/allowlist.ts` (access method, license, attribution) can be fetched. An unlisted source is refused before any request.
 2. **Download** the full snapshot to a temp file (honest user-agent, redirects refused, truncated or non-JSON content fails the run).
-3. **Stream-parse** the file into neutral `RawReview` values, so memory stays flat.
-4. **Filter**, counting every exclusion under one reason: required fields, valid date, not in the future, inside the 90-day window, English claim text.
+3. **Stream-parse** the file into neutral `RawReview` values (including the optional rating explanation), so memory stays flat.
+4. **Filter**, counting every exclusion under one reason: required fields, valid date, not in the future, inside the 90-day window, English claim text. The rating explanation is not a filter: it is capped and carried on the record, and a missing one excludes nothing.
 5. **Dedupe** by URL (the last review in the snapshot wins).
 6. **Classify** each distinct rating text: cache first (`rating_classifications`), then the Gemini model for unseen texts. Failures become `unclassifiable` for this run and are retried next run.
 7. **Store** in one transaction: upsert the records on `url`, delete rows that aged out of the window. Any error rolls everything back.
@@ -78,6 +78,7 @@ erDiagram
     text url UK
     text claim_text
     text rating_text
+    text rating_explanation "nullable, at most 1000 chars"
     text publisher
     date published_on
     text source_id
@@ -98,7 +99,8 @@ erDiagram
 
 - `claims.url` is unique and is the upsert key. The surrogate `id` is the primary key, so changing the dedupe rule later only replaces a unique constraint.
 - "Negative" (false or misleading) is derived from `category`, not stored.
-- Only claim text, rating text, publisher, date and the link back are stored. There is no column for article text, by design.
+- Only claim text, rating text, publisher, date, the link back and, when the feed has one, the publisher's rating explanation are stored. There is no column for article text, by design.
+- `rating_explanation` is nullable and capped at 1000 characters, cut at a word boundary with an ellipsis. It is per review, so it lives on `claims` and not in the rating cache, and it is never sent to the classifier. Reasoning: ADR E1 in the design of the `store-rating-explanation` change (`openspec/changes/`, under `archive/` once archived).
 - `rating_classifications` is a cache keyed by rating text; `classifier_version` marks which model and prompt produced a row.
 
 ## Where things live

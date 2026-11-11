@@ -14,7 +14,7 @@ allowlist check -> download snapshot to a temp file -> stream-parse it
    -> run report
 ```
 
-- Only the claim text, rating text, publisher, review date and the link to the original fact-check are stored, plus
+- Only the claim text, rating text, publisher, review date and the link to the original fact-check are stored, plus the optional rating explanation (capped at 1000 characters),
   the source reference and the derived category and severity. Article bodies are never stored, and no publisher site
   is ever contacted.
 - The window is the 90 days up to and including the run date (UTC). Reviews with a missing or invalid date, or a date
