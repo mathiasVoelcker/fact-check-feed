@@ -207,3 +207,86 @@ describe("filterEntries over the recorded fixture", () => {
     expect(records.every((r) => /^[\x20-\x7E‘-”–—… ]+$/.test(r.claimText))).toBe(true);
   });
 });
+
+describe("filterEntries: rating explanation", () => {
+  it("carries the explanation onto the kept record", async () => {
+    const result = await run([review({ ratingExplanation: "Global indices show otherwise." })]);
+    expect(result.records).toMatchObject([{ ratingExplanation: "Global indices show otherwise." }]);
+  });
+
+  it("caps a long explanation", async () => {
+    const result = await run([review({ ratingExplanation: "word ".repeat(400) })]);
+    const stored = result.records[0]?.ratingExplanation ?? "";
+    expect(stored.length).toBeLessThanOrEqual(1000);
+    expect(stored.endsWith("…")).toBe(true);
+  });
+
+  it("keeps a review without an explanation and counts no exclusion for it", async () => {
+    const result = await run([review(), review({ url: "https://example.org/check/2", ratingExplanation: "Because." })]);
+    expect(result.records).toHaveLength(2);
+    expect(result.records.find((r) => r.url === "https://example.org/check/1")?.ratingExplanation).toBeUndefined();
+    expect(result.read).toBe(2);
+    expect(Object.values(result.counts).reduce((sum, n) => sum + n, 0)).toBe(0);
+  });
+
+  it("lets the last review for a URL win, including when it has no explanation", async () => {
+    const url = "https://example.org/same";
+    const result = await run([review({ url, ratingExplanation: "Older explanation." }), review({ url })]);
+    expect(result.records).toHaveLength(1);
+    expect(result.records[0]?.ratingExplanation).toBeUndefined();
+  });
+});
+
+describe("filterEntries: claim origin", () => {
+  it("carries the original URL, venue and author onto the kept record", async () => {
+    const result = await run([
+      review({ originalUrl: "https://www.facebook.com/a/posts/1", originalVenue: "In a Facebook post", originalAuthor: "Social media users" }),
+    ]);
+    expect(result.records).toMatchObject([
+      { originalUrl: "https://www.facebook.com/a/posts/1", originalVenue: "In a Facebook post", originalAuthor: "Social media users" },
+    ]);
+  });
+
+  it("caps a long venue and author at 200 characters, ending in an ellipsis", async () => {
+    const result = await run([review({ originalVenue: "venue ".repeat(100), originalAuthor: "author ".repeat(100) })]);
+    const [record] = result.records;
+    for (const value of [record?.originalVenue ?? "", record?.originalAuthor ?? ""]) {
+      expect(value.length).toBeLessThanOrEqual(200);
+      expect(value.endsWith("…")).toBe(true);
+    }
+  });
+
+  it("keeps the original URL as written, with no cap", async () => {
+    const url = `https://example.org/${"p".repeat(1500)}?x=1`;
+    const result = await run([review({ originalUrl: url })]);
+    expect(result.records[0]?.originalUrl).toBe(url);
+  });
+
+  it.each(["javascript:alert(1)", "data:text/html,<b>x</b>", "/relative/path", "example.org/no-scheme", "ftp://example.org/file", "https://"])(
+    "drops an original URL that is not an absolute http(s) URL (%s) without excluding the review",
+    async (originalUrl) => {
+      const result = await run([review({ originalUrl })]);
+      expect(result.records).toHaveLength(1);
+      expect(result.records[0]).not.toHaveProperty("originalUrl");
+      expect(Object.values(result.counts).reduce((sum, n) => sum + n, 0)).toBe(0);
+    },
+  );
+
+  it("keeps a review without any origin and counts no exclusion for it", async () => {
+    const result = await run([review()]);
+    expect(result.records[0]).not.toHaveProperty("originalUrl");
+    expect(result.records[0]).not.toHaveProperty("originalVenue");
+    expect(result.records[0]).not.toHaveProperty("originalAuthor");
+    expect(result.read).toBe(1);
+    expect(Object.values(result.counts).reduce((sum, n) => sum + n, 0)).toBe(0);
+  });
+
+  it("lets the last review for a URL win, including when it has no origin values", async () => {
+    const url = "https://example.org/same";
+    const result = await run([review({ url, originalUrl: "https://www.facebook.com/old/1", originalAuthor: "Old author" }), review({ url })]);
+    expect(result.records).toHaveLength(1);
+    expect(result.records[0]).not.toHaveProperty("originalUrl");
+    expect(result.records[0]).not.toHaveProperty("originalAuthor");
+  });
+});
+

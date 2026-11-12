@@ -1,6 +1,7 @@
 import type { ParsedEntry } from "../sources/types";
 import { type ExclusionCounts, countExclusion, createExclusionCounts } from "./exclusions";
-import { checkDate, requireFields } from "./filters";
+import { MAX_EXPLANATION_LENGTH, MAX_ORIGIN_LABEL_LENGTH, capText } from "./cap";
+import { checkDate, isHttpUrl, requireFields } from "./filters";
 import { isEnglish as defaultIsEnglish } from "./language";
 
 /** A review that passed every filter, ready to be classified and stored. */
@@ -10,6 +11,13 @@ export type FilteredRecord = {
   ratingText: string;
   publisher: string;
   publishedOn: string;
+  /** The publisher's explanation of the rating, capped; absent when the feed gave none. */
+  ratingExplanation?: string;
+  /** Where the claim appeared, the fake news itself (design E7); only an absolute http(s) URL is kept. */
+  originalUrl?: string;
+  /** Venue and author of the original claim, capped; absent when the feed gave none. */
+  originalVenue?: string;
+  originalAuthor?: string;
 };
 
 export type FilterOptions = {
@@ -63,7 +71,18 @@ export async function filterEntries(
     }
 
     if (byUrl.delete(url)) countExclusion(counts, "duplicate-url");
-    byUrl.set(url, { url, claimText, ratingText, publisher, publishedOn: date.value.publishedOn });
+    const { ratingExplanation, originalUrl, originalVenue, originalAuthor } = entry.review;
+    byUrl.set(url, {
+      url,
+      claimText,
+      ratingText,
+      publisher,
+      publishedOn: date.value.publishedOn,
+      ...(ratingExplanation === undefined ? {} : { ratingExplanation: capText(ratingExplanation, MAX_EXPLANATION_LENGTH) }),
+      ...(originalUrl === undefined || !isHttpUrl(originalUrl) ? {} : { originalUrl }),
+      ...(originalVenue === undefined ? {} : { originalVenue: capText(originalVenue, MAX_ORIGIN_LABEL_LENGTH) }),
+      ...(originalAuthor === undefined ? {} : { originalAuthor: capText(originalAuthor, MAX_ORIGIN_LABEL_LENGTH) }),
+    });
   }
 
   return { records: [...byUrl.values()], read, counts };

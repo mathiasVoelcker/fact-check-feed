@@ -14,6 +14,14 @@ export const claims = pgTable("claims", {
   url: text().notNull().unique(),
   claimText: text("claim_text").notNull(),
   ratingText: text("rating_text").notNull(),
+  /** The publisher's explanation of the rating, capped (design E1); null when the feed gave none. */
+  ratingExplanation: text("rating_explanation"),
+  /** Where the claim appeared: the fake news itself, never a source (design E7). Only an http(s) URL, never requested. */
+  originalUrl: text("original_url"),
+  /** The original claim's venue, for example "In a Facebook post", capped. */
+  originalVenue: text("original_venue"),
+  /** Who made the original claim, as the feed gives it (design E6), capped. */
+  originalAuthor: text("original_author"),
   publisher: text().notNull(),
   publishedOn: date("published_on", { mode: "string" }).notNull(),
   sourceId: text("source_id").notNull(),

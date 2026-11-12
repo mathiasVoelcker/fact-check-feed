@@ -62,6 +62,10 @@ describe("claims table", () => {
         "url",
         "claim_text",
         "rating_text",
+        "rating_explanation",
+        "original_url",
+        "original_venue",
+        "original_author",
         "publisher",
         "published_on",
         "source_id",
@@ -88,6 +92,42 @@ describe("claims table", () => {
     await expect(
       insertClaim(claim({ url: "https://example.org/unclassifiable", category: "unclassifiable", severity: null })),
     ).resolves.toBeDefined();
+  });
+
+  it("allows a record without a rating explanation, which is then null", async () => {
+    await insertClaim(claim({ url: "https://example.org/no-explanation" }));
+    await insertClaim(claim({ url: "https://example.org/with-explanation", rating_explanation: "Because." }));
+    const result = await testDb.client.query<{ url: string; rating_explanation: string | null }>(
+      `select url, rating_explanation from claims where url like 'https://example.org/%explanation' order by url`,
+    );
+    expect(result.rows).toEqual([
+      { url: "https://example.org/no-explanation", rating_explanation: null },
+      { url: "https://example.org/with-explanation", rating_explanation: "Because." },
+    ]);
+  });
+
+  it("allows a record without the claim origin, which is then null", async () => {
+    await insertClaim(claim({ url: "https://example.org/no-origin" }));
+    await insertClaim(
+      claim({
+        url: "https://example.org/with-origin",
+        original_url: "https://www.facebook.com/a/posts/1",
+        original_venue: "In a Facebook post",
+        original_author: "Social media users",
+      }),
+    );
+    const result = await testDb.client.query<{ url: string; original_url: string | null; original_venue: string | null; original_author: string | null }>(
+      `select url, original_url, original_venue, original_author from claims where url like 'https://example.org/%origin' order by url`,
+    );
+    expect(result.rows).toEqual([
+      { url: "https://example.org/no-origin", original_url: null, original_venue: null, original_author: null },
+      {
+        url: "https://example.org/with-origin",
+        original_url: "https://www.facebook.com/a/posts/1",
+        original_venue: "In a Facebook post",
+        original_author: "Social media users",
+      },
+    ]);
   });
 
   it("rejects a category outside the fixed set", async () => {

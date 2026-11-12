@@ -25,12 +25,30 @@ function text(value: unknown): string | undefined {
   return typeof value === "string" && value.trim() !== "" ? value : undefined;
 }
 
+/** The first appearance URL if there is one, otherwise the first listed appearance's. `appearance` may be a list or a single object. */
+function originalUrl(itemReviewed: Json | undefined): string | undefined {
+  const firstAppearance = isObject(itemReviewed?.firstAppearance) ? text(itemReviewed.firstAppearance.url) : undefined;
+  if (firstAppearance) return firstAppearance;
+  const appearance = itemReviewed?.appearance;
+  for (const entry of Array.isArray(appearance) ? appearance : [appearance]) {
+    const url = isObject(entry) ? text(entry.url) : undefined;
+    if (url) return url;
+  }
+  return undefined;
+}
+
 function mapReview(item: Json): RawReview {
   const author = isObject(item.author) ? item.author : undefined;
   const rating = isObject(item.reviewRating) ? item.reviewRating : undefined;
+  const itemReviewed = isObject(item.itemReviewed) ? item.itemReviewed : undefined;
+  const claimAuthor = isObject(itemReviewed?.author) ? itemReviewed.author : undefined;
   const fields = {
     claimText: text(item.claimReviewed),
     ratingText: text(rating?.alternateName),
+    ratingExplanation: text(rating?.ratingExplanation),
+    originalUrl: originalUrl(itemReviewed),
+    originalVenue: text(itemReviewed?.name),
+    originalAuthor: text(claimAuthor?.name),
     publisher: text(author?.name),
     publishedDate: text(item.datePublished),
     url: text(item.url),

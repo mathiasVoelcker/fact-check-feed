@@ -9,6 +9,17 @@ export type RawReview = {
   /** The published date exactly as the source wrote it; it is parsed and validated downstream. */
   publishedDate?: string;
   url?: string;
+  /** The publisher's explanation of the rating, exactly as written; it is capped downstream, and absent when blank. */
+  ratingExplanation?: string;
+  /**
+   * Where the claim appeared (the fake news itself): the first appearance URL, else the first listed one. It is passed
+   * through as written; the pipeline keeps it only if it is an http(s) URL.
+   */
+  originalUrl?: string;
+  /** `itemReviewed.name`, for example "In a Facebook post". */
+  originalVenue?: string;
+  /** `itemReviewed.author.name`, who made the claim. */
+  originalAuthor?: string;
 };
 
 /** What an adapter yields per feed entry; a malformed entry is counted by the pipeline and skipped. */
