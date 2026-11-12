@@ -49,7 +49,7 @@ describe("Data Commons adapter: mapping the fixture", () => {
     const reviews = reviewsOf(await collect(FIXTURE_PATH));
     const first = reviews.find((r) => r.url?.includes("hiniduma") || r.claimText?.startsWith("A man seen standing beside the President"));
     expect(first).toBeDefined();
-    expect(first).toEqual({
+    expect(first).toMatchObject({
       claimText: expect.stringMatching(/^A man seen standing beside the President/),
       ratingText: "False",
       publisher: "Fact Crescendo Sri Lanka",
@@ -58,10 +58,10 @@ describe("Data Commons adapter: mapping the fixture", () => {
     });
   });
 
-  it("returns exactly the five neutral fields plus the optional rating explanation, and nothing else", async () => {
+  it("returns exactly the five neutral fields plus the optional explanation and claim origin, and nothing else", async () => {
     const reviews = reviewsOf(await collect(FIXTURE_PATH));
     for (const review of reviews) {
-      const allowed = ["claimText", "ratingText", "publisher", "publishedDate", "url", "ratingExplanation"];
+      const allowed = ["claimText", "ratingText", "publisher", "publishedDate", "url", "ratingExplanation", "originalUrl", "originalVenue", "originalAuthor"];
       expect(Object.keys(review).every((key) => allowed.includes(key))).toBe(true);
     }
   });
@@ -110,8 +110,73 @@ describe("Data Commons adapter: rating explanation", () => {
   });
 });
 
+describe("Data Commons adapter: claim origin", () => {
+  const feedItem = (itemReviewed: unknown) => ({
+    "@type": "ClaimReview",
+    author: { name: "Example Checker" },
+    claimReviewed: "A claim",
+    datePublished: "2026-10-30",
+    url: "https://example.org/check/1",
+    reviewRating: { alternateName: "False" },
+    ...(itemReviewed === undefined ? {} : { itemReviewed }),
+  });
+
+  it("prefers the first appearance URL over the listed appearances", async () => {
+    const path = await writeFeed("first-appearance.json", [
+      feedItem({
+        "@type": "Claim",
+        firstAppearance: { url: "https://x.com/someone/status/1" },
+        appearance: [{ url: "https://www.facebook.com/a/posts/2" }, { url: "https://www.facebook.com/b/posts/3" }],
+      }),
+    ]);
+    expect(reviewsOf(await collect(path))).toMatchObject([{ originalUrl: "https://x.com/someone/status/1" }]);
+  });
+
+  it("falls back to the first listed appearance, whether appearance is a list or a single object", async () => {
+    const path = await writeFeed("appearance.json", [
+      feedItem({ appearance: [{ url: "https://www.facebook.com/a/posts/2" }, { url: "https://www.facebook.com/b/posts/3" }] }),
+      feedItem({ appearance: { url: "https://www.instagram.com/p/abc/" } }),
+    ]);
+    expect(reviewsOf(await collect(path))).toMatchObject([
+      { originalUrl: "https://www.facebook.com/a/posts/2" },
+      { originalUrl: "https://www.instagram.com/p/abc/" },
+    ]);
+  });
+
+  it("maps the venue and the author name of itemReviewed, exactly as written", async () => {
+    const path = await writeFeed("venue-author.json", [feedItem({ name: "In a Facebook post", author: { "@type": "Person", name: "Social media users" } })]);
+    expect(reviewsOf(await collect(path))).toMatchObject([{ originalVenue: "In a Facebook post", originalAuthor: "Social media users" }]);
+  });
+
+  it("maps nothing when itemReviewed or its parts are missing, blank or not strings", async () => {
+    const path = await writeFeed("no-origin.json", [
+      feedItem(undefined),
+      feedItem("not an object"),
+      feedItem({ name: "  ", author: { name: "" }, appearance: [{ url: "  " }, {}], firstAppearance: { url: 5 } }),
+      feedItem({ author: "just a string", appearance: "https://example.org/x" }),
+    ]);
+    for (const review of reviewsOf(await collect(path))) {
+      expect(review).not.toHaveProperty("originalUrl");
+      expect(review).not.toHaveProperty("originalVenue");
+      expect(review).not.toHaveProperty("originalAuthor");
+    }
+  });
+
+  it("passes a URL that is not http(s) through for the pipeline to judge", async () => {
+    const path = await writeFeed("odd-url.json", [feedItem({ appearance: [{ url: "javascript:alert(1)" }] })]);
+    expect(reviewsOf(await collect(path))).toMatchObject([{ originalUrl: "javascript:alert(1)" }]);
+  });
+
+  it("finds the origin on the fixture reviews that carry it", async () => {
+    const reviews = reviewsOf(await collect(FIXTURE_PATH));
+    expect(reviews.filter((r) => r.originalUrl !== undefined)).toHaveLength(41);
+    expect(reviews.filter((r) => r.originalVenue !== undefined)).toHaveLength(4);
+    expect(reviews.filter((r) => r.originalAuthor !== undefined)).toHaveLength(48);
+  });
+});
+
 describe("Data Commons adapter: ignored feed fields", () => {
-  it("ignores the review body, images, appearance links and other extra fields", async () => {
+  it("ignores the review body, images, further appearance links and other extra fields", async () => {
     const path = await writeFeed("extras.json", [
       {
         "@type": "ClaimReview",
@@ -143,13 +208,16 @@ describe("Data Commons adapter: ignored feed fields", () => {
           publisher: "Example Checker",
           publishedDate: "2026-10-30",
           url: "https://example.org/check/1",
+          originalUrl: "https://other.example/first",
+          originalAuthor: "Someone",
         },
       },
     ]);
     const serialized = JSON.stringify(entries);
     expect(serialized).not.toContain("explanation");
     expect(serialized).not.toContain("hero.jpg");
-    expect(serialized).not.toContain("other.example");
+    expect(serialized).not.toContain("other.example/post");
+    expect(serialized).not.toContain("Where it appeared");
   });
 });
 

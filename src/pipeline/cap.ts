@@ -1,16 +1,19 @@
 /** The most characters of a publisher's rating explanation that is stored (design E1). */
 export const MAX_EXPLANATION_LENGTH = 1000;
 
+/** The most characters of the original claim's venue or author name that is stored (design E5). */
+export const MAX_ORIGIN_LABEL_LENGTH = 200;
+
 const ELLIPSIS = "…";
 
 /**
- * A text within the cap is returned exactly as written. A longer one is cut at a word boundary and ends with an
- * ellipsis, so the result never exceeds the cap; a single word longer than the cap is cut hard.
+ * A text within the limit is returned exactly as written. A longer one is cut at a word boundary and ends with an
+ * ellipsis, so the result never exceeds the limit; a single word longer than the limit is cut hard.
  */
-export function capExplanation(text: string): string {
-  if (text.length <= MAX_EXPLANATION_LENGTH) return text;
+export function capText(text: string, limit: number): string {
+  if (text.length <= limit) return text;
 
-  let kept = text.slice(0, MAX_EXPLANATION_LENGTH - ELLIPSIS.length);
+  let kept = text.slice(0, limit - ELLIPSIS.length);
   // Cutting mid-word: fall back to the last whitespace. If the next character is whitespace the cut is already clean.
   if (!/\s/.test(text.charAt(kept.length))) {
     const lastWord = /\s\S*$/.exec(kept);

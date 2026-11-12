@@ -77,6 +77,9 @@ export async function runIngestion({
             claimText: record.claimText,
             ratingText: record.ratingText,
             ratingExplanation: record.ratingExplanation ?? null,
+            originalUrl: record.originalUrl ?? null,
+            originalVenue: record.originalVenue ?? null,
+            originalAuthor: record.originalAuthor ?? null,
             publisher: record.publisher,
             publishedOn: record.publishedOn,
             sourceId: adapter.sourceId,
@@ -90,8 +93,11 @@ export async function runIngestion({
           set: {
             claimText: sql`excluded.claim_text`,
             ratingText: sql`excluded.rating_text`,
-            // An explanation the feed no longer carries is cleared, not kept.
+            // A value the feed no longer carries is cleared, not kept.
             ratingExplanation: sql`excluded.rating_explanation`,
+            originalUrl: sql`excluded.original_url`,
+            originalVenue: sql`excluded.original_venue`,
+            originalAuthor: sql`excluded.original_author`,
             publisher: sql`excluded.publisher`,
             publishedOn: sql`excluded.published_on`,
             sourceId: sql`excluded.source_id`,

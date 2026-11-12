@@ -23,8 +23,9 @@ Use Node 24: `source ~/.nvm/nvm.sh; nvm use 24` (use `;`, not `&&`, after `sourc
 
 ## Rules
 
-- **Legal:** store only claim text, rating text, publisher, date and the link back, plus the publisher's rating explanation when the feed has one, capped at 1000 characters (`src/pipeline/explanation.ts`). Never store article text, never
+- **Legal:** store only claim text, rating text, publisher, date and the link back, plus, when the feed has them, the publisher's rating explanation (capped at 1000 characters) and the claim's origin: original URL (http(s) only), venue and author name (capped at 200). Caps are in `src/pipeline/cap.ts`. Never store article text, never
   contact publisher sites, and fetch only sources on the allowlist (`src/allowlist/allowlist.ts`).
+- **The original URL is fake news.** `original_url`, `original_venue` and `original_author` (the claim's own origin) are the false or misleading content itself. Any UI that shows them must label them in plain words as the fake news, never as a source or reference, next to the rating, with a link that does not look ordinary and has `rel="noopener noreferrer nofollow"`. Never fetch the original URL. Rationale: design E7 of the `store-claim-context` change.
 - **The LLM sees only rating text**, never claims, URLs or publishers.
 - **Secrets** live in `.env` (gitignored) and GitHub repository secrets. Never print, log or commit a key or
   `DATABASE_URL`.

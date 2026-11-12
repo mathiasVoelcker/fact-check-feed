@@ -21,13 +21,16 @@ rules:
   specs:
     - Include legal rules (stored fields, attribution, allowlist) as testable requirements where relevant
     - Write acceptance criteria per feature as scenarios that can be turned into tests
+    - Any UI requirement that shows `original_url`, `original_venue` or `original_author` must require a plain-words label saying it is the false or misleading content itself (never a source or reference), shown next to the rating, with a link that does not look ordinary and carries rel="noopener noreferrer nofollow"
   design:
     - Source adapters sit behind one interface and emit normalized records keyed by article URL
     - Ranking considers recency (strong boost for the last 7 days within the 90-day window) and rating severity (negative ratings first). Publisher count is not a signal
     - Record the URL upsert key as an ADR, with the revisit trigger "multi-claim articles turn out to be common"
     - Record notable decisions with their rationale (ADR style)
+    - A design that shows `original_url`, `original_venue` or `original_author` must follow the rule recorded as E7 in `openspec/changes/archive/*-store-claim-context/design.md` (they are the fake news itself and are labeled as such, never presented as a source)
   tasks:
     - Put tests before implementation for each feature
+    - Tasks that display `original_url`, `original_venue` or `original_author` must include a UI test asserting the "this is the false claim" label and the rel attributes on the link
 
 operations:
   apply:

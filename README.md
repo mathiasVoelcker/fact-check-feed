@@ -2,7 +2,8 @@
 
 A weekly job ingests recent fact-checked claims from the Google Data Commons ClaimReview feed into Postgres. A web UI
 (a later change) lists them. Only claim text, rating text, publisher, date and a link to the original fact-check are
-stored, plus the publisher's explanation of the rating when the feed has one (capped at 1000 characters).
+stored, plus, when the feed has them, the publisher's explanation of the rating (capped at 1000 characters) and where the
+claim appeared: the original URL, venue and author name. That original claim is the fake news itself, never a source.
 
 ## Requirements
 

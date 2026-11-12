@@ -236,3 +236,57 @@ describe("filterEntries: rating explanation", () => {
     expect(result.records[0]?.ratingExplanation).toBeUndefined();
   });
 });
+
+describe("filterEntries: claim origin", () => {
+  it("carries the original URL, venue and author onto the kept record", async () => {
+    const result = await run([
+      review({ originalUrl: "https://www.facebook.com/a/posts/1", originalVenue: "In a Facebook post", originalAuthor: "Social media users" }),
+    ]);
+    expect(result.records).toMatchObject([
+      { originalUrl: "https://www.facebook.com/a/posts/1", originalVenue: "In a Facebook post", originalAuthor: "Social media users" },
+    ]);
+  });
+
+  it("caps a long venue and author at 200 characters, ending in an ellipsis", async () => {
+    const result = await run([review({ originalVenue: "venue ".repeat(100), originalAuthor: "author ".repeat(100) })]);
+    const [record] = result.records;
+    for (const value of [record?.originalVenue ?? "", record?.originalAuthor ?? ""]) {
+      expect(value.length).toBeLessThanOrEqual(200);
+      expect(value.endsWith("…")).toBe(true);
+    }
+  });
+
+  it("keeps the original URL as written, with no cap", async () => {
+    const url = `https://example.org/${"p".repeat(1500)}?x=1`;
+    const result = await run([review({ originalUrl: url })]);
+    expect(result.records[0]?.originalUrl).toBe(url);
+  });
+
+  it.each(["javascript:alert(1)", "data:text/html,<b>x</b>", "/relative/path", "example.org/no-scheme", "ftp://example.org/file", "https://"])(
+    "drops an original URL that is not an absolute http(s) URL (%s) without excluding the review",
+    async (originalUrl) => {
+      const result = await run([review({ originalUrl })]);
+      expect(result.records).toHaveLength(1);
+      expect(result.records[0]).not.toHaveProperty("originalUrl");
+      expect(Object.values(result.counts).reduce((sum, n) => sum + n, 0)).toBe(0);
+    },
+  );
+
+  it("keeps a review without any origin and counts no exclusion for it", async () => {
+    const result = await run([review()]);
+    expect(result.records[0]).not.toHaveProperty("originalUrl");
+    expect(result.records[0]).not.toHaveProperty("originalVenue");
+    expect(result.records[0]).not.toHaveProperty("originalAuthor");
+    expect(result.read).toBe(1);
+    expect(Object.values(result.counts).reduce((sum, n) => sum + n, 0)).toBe(0);
+  });
+
+  it("lets the last review for a URL win, including when it has no origin values", async () => {
+    const url = "https://example.org/same";
+    const result = await run([review({ url, originalUrl: "https://www.facebook.com/old/1", originalAuthor: "Old author" }), review({ url })]);
+    expect(result.records).toHaveLength(1);
+    expect(result.records[0]).not.toHaveProperty("originalUrl");
+    expect(result.records[0]).not.toHaveProperty("originalAuthor");
+  });
+});
+

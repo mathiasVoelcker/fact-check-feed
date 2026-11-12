@@ -17,7 +17,7 @@ export type RequiredFieldsReview = {
 const isBlank = (value: string | undefined): value is undefined => value === undefined || value.trim() === "";
 
 /** The link back to the original fact-check must be an absolute http(s) URL, so it is safe to render as a link. */
-function isHttpUrl(value: string): boolean {
+export function isHttpUrl(value: string): boolean {
   if (!/^https?:\/\//i.test(value)) return false;
   try {
     new URL(value);

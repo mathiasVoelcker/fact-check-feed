@@ -10,7 +10,7 @@ You need Node 24 (`nvm use 24`; the version is pinned in `.nvmrc`) and `npm inst
 npm test
 ```
 
-This runs `vitest run` over `tests/**/*.test.ts`: about 22 files and 380 tests.
+This runs `vitest run` over `tests/**/*.test.ts`: about 23 files and 421 tests.
 
 | Goal                         | Command                                                      |
 | ---------------------------- | ------------------------------------------------------------ |
@@ -36,9 +36,9 @@ The suite is limited to 2 workers and has generous timeouts (30 s per test, 60 s
 | Allowlist            | `allowlist`, `allowlist-guard`                                                                |
 | Database schema      | `schema`                                                                                      |
 | Data Commons adapter | `data-commons-adapter`, `data-commons-adapter-memory`, `data-commons-fetch`                   |
-| Filters              | `filter-required-fields`, `filter-dates`, `filter-entries`, `explanation-cap`, `language`     |
+| Filters              | `filter-required-fields`, `filter-dates`, `filter-entries`, `text-cap`, `language`          |
 | Classification       | `classification`, `gemini-classifier`                                                      |
-| Whole pipeline       | `ingestion`, `rating-explanation`, `legal`, `cli`                                             |
+| Whole pipeline       | `ingestion`, `rating-explanation`, `claim-origin`, `legal`, `cli`                             |
 | Docs and workflow    | `docs`, `workflow`                                                                            |
 | Spec coverage        | `spec-coverage`                                                                               |
 | Setup checks         | `placeholder`, `fixtures`                                                                     |
