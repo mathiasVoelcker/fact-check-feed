@@ -33,6 +33,14 @@ npm run typecheck   # TypeScript, strict mode
 Tests run against [PGlite](https://pglite.dev), a real Postgres engine that runs inside the test process, so no
 database, Docker or network is needed. They use a recorded fixture (`tests/fixtures/`) and never request the live feed.
 
+## Browser tests
+
+```bash
+npm run test:e2e    # Playwright; needs Docker and E2E_DATABASE_URL, see tests/test-guide.md
+```
+
+They run the feed in Chromium against a local throwaway Postgres (never Neon; any non-local `E2E_DATABASE_URL` is refused). `npm test` does not need any of this.
+
 ## Database
 
 The schema lives in `src/db/schema.ts` and the SQL migrations in `drizzle/`.

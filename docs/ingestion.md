@@ -49,6 +49,12 @@ Ingestion run for data-commons-claimreview on 2026-11-02
 Every entry that was read ends up either stored or counted under exactly one exclusion reason, so
 `read = stored + the sum of all excluded`. `duplicate-url` counts reviews replaced by a later review with the same URL.
 
+### Seeing the result
+
+The feed page reads what a run stored. With `DATABASE_URL` set, `npm run dev` serves it at <http://localhost:3000>; it
+shows the newest stored fact-checks first, so a new run appears on the next page load. The page and its design are
+described under "The web feed" in [architecture.md](architecture.md).
+
 ### The weekly schedule
 
 The workflow `.github/workflows/ingest.yml` runs `npm run ingest` every week and can be started by hand from the

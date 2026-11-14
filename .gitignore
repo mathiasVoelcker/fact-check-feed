@@ -24,3 +24,8 @@ feed-snapshot*
 .neon
 
 personalNotes.txt
+
+# playwright output
+.test-dashboard/
+playwright-report/
+test-results/

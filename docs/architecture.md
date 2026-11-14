@@ -1,8 +1,9 @@
 # Architecture
 
 How the application is put together today. This is the living overview: update it when a change alters the structure.
-The reasoning behind each choice (the ADRs) is in the design of the change that introduced it,
-`openspec/changes/archive/*-ingest-data-commons-feed/design.md`. What the system must do is in `openspec/specs/`.
+The reasoning behind each choice (the ADRs) is in the design of the change that introduced it:
+`openspec/changes/archive/*-ingest-data-commons-feed/design.md` (ingestion, D*), `*-store-claim-context/design.md` (claim context, E*)
+and `*-feed-ui/design.md` (the web feed, U*). What the system must do is in `openspec/specs/`.
 
 ## What it is
 
@@ -13,7 +14,7 @@ and scrolling pages (the `feed-ui` change).
 
 ## Components
 
-Solid arrows are built; the dashed box is future work. The feed (bottom) is described under "The web feed" below.
+Solid arrows are built; the dashed box is future work. The web feed (bottom right) is described under "The web feed" below.
 
 ```mermaid
 flowchart LR
@@ -64,10 +65,45 @@ flowchart LR
 
 ## The web feed
 
-- `app/page.tsx` (a Server Component) reads the first page of claims, the number of matches and the filter choices through `src/feed/claims-query.ts`. Further pages come from `GET /api/claims`, which calls the same module, and a small client component adds them as the reader scrolls. The browser never receives all rows, and `DATABASE_URL` stays on the server (`src/db/client.ts`). Reasoning: ADR U1 in the design of the `feed-ui` change (`openspec/changes/`, under `archive/` once archived).
+How a reader's browser gets claims from the database. The first page is rendered on the server; later pages and any
+search or filter change go through `GET /api/claims`. Both paths use the same query module, and only the server holds
+`DATABASE_URL`.
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor R as Reader (browser)
+  participant P as app/page.tsx<br/>(Server Component)
+  participant F as app/feed/feed.tsx<br/>(client component)
+  participant A as /api/claims<br/>src/feed/claims-route.ts
+  participant Q as src/feed/claims-query.ts
+  participant DB as Postgres (claims)
+
+  Note over R,DB: First load
+  R->>P: GET /
+  P->>Q: getFeedPage, countClaims, getFilterChoices (in parallel)
+  Q->>DB: SELECT ... ORDER BY published_on DESC, id DESC LIMIT 50<br/>count(*), distinct publishers and categories
+  DB-->>Q: rows
+  Q-->>P: first 50 cards, total, filter choices, next cursor
+  P-->>R: HTML with the first cards (Feed gets them as props)
+
+  Note over R,DB: Scrolling, search or filter change
+  R->>F: nears the last card, or types / picks a filter
+  F->>A: fetch /api/claims?q=&category=&publisher=&cursor=
+  A->>A: validate parameters, parse cursor (400 if bad)
+  A->>Q: getFeedPage (+ countClaims on a first page)
+  Q->>DB: keyset query: WHERE (published_on, id) < cursor
+  DB-->>Q: rows
+  A-->>F: JSON items, nextCursor, total
+  F-->>R: appends cards (a new search or filter starts the list again)
+```
+
+- `app/page.tsx` (a Server Component) reads the first page of claims, the number of matches and the filter choices through `src/feed/claims-query.ts`. Further pages come from `GET /api/claims`, which calls the same module, and a small client component adds them as the reader scrolls. The browser never receives all rows, and `DATABASE_URL` stays on the server (`src/db/client.ts`). Reasoning: ADR U1 in the design of the `feed-ui` change (`openspec/changes/archive/*-feed-ui/design.md`).
 - The order is the review date, newest first, with `id` breaking ties. Pages use a keyset cursor on `(published_on, id)`, not an offset, so a claim stored by an ingestion run while someone is scrolling cannot cause a repeat or a skip (ADR U2). There is no sort control until the rating classification is settled.
 - Search and the rating and publisher filters run in SQL (`ILIKE` per word, `%` and `_` escaped). The total shown is a `count` with the same filters, not the number of rendered cards.
-- The claim origin is shown only inside a block labeled by rating category, as the claim that was checked and never as a source (ADR U3, which applies E7), with a link that is `nofollow` and shows the host only. The server never requests it.
+- Scrolling is a client component (`app/feed/feed.tsx`): an `IntersectionObserver` asks for the next page shortly before the end, changing the search or a filter aborts the request in flight and starts the list again (search is debounced), and a failed page shows a retry button. The list logic is a pure reducer in `src/feed/scroll.ts` so it is unit-tested without a browser (ADR U6, U8).
+- The attribution line on the page is read from the allowlist entry, not hardcoded (ADR U7). The page does not state the 90-day window: that is an ingestion rule, and the page only knows what is stored.
+- The claim origin is shown only inside a block labeled by rating category, as the claim that was checked and never as a source (ADR U3, which applies E7), with a link that is `nofollow` and shows the host only. The wording comes from `src/feed/origin-label.ts`, the markup from `app/feed/claim-card.tsx`. The server never requests it.
 
 ## One run, step by step
 
@@ -129,10 +165,11 @@ erDiagram
 | `src/pipeline/` | Filters, language detection, exclusion reasons, dedupe and the run (`run.ts`) |
 | `src/classification/` | Classifier interface, the Gemini classifier, the cache store, validation |
 | `src/db/` | Drizzle schema (`drizzle/` holds the migrations) and `client.ts`, the server-side connection the web app reads with |
-| `src/feed/` | The feed's read-only claims query (filters, keyset cursor, count, filter choices) |
+| `src/feed/` | The feed's logic, free of React: the read-only claims query (filters, keyset cursor, count, filter choices), the `/api/claims` request handler, the origin label wording and the scroll list reducer |
 | `src/cli/ingest.ts`, `scripts/ingest.ts` | The `npm run ingest` entry point and the run report |
 | `.github/workflows/ingest.yml` | Weekly cron and manual dispatch; secrets `DATABASE_URL` and `GEMINI_API_KEY` |
-| `app/` | The Next.js feed page and its `/api/claims` route |
+| `app/` | The Next.js feed: `page.tsx` (server page), `feed/` (`feed.tsx` client search, filters and scrolling; `claim-card.tsx` card and origin block) and `api/claims/route.ts` |
+| `e2e/`, `playwright.config.ts` | Playwright browser tests of the feed, their seed data and the database guard; `.github/workflows/e2e.yml` runs them in CI |
 | `tests/` | See `tests/test-guide.md` |
 
 ## Key decisions
@@ -144,6 +181,7 @@ erDiagram
 - **Deterministic language detection.** Two offline libraries (`franc-min` or `tinyld`) behind a Latin-letter guard, chosen by a labeled fixture test. No LLM.
 - **The LLM sees only rating text.** Never the claim, URL or publisher. Results are cached by exact text and classifier version.
 - **The feed reads the database on the server, with keyset paging.** Correct count, search and filters at any size, and no repeats when ingestion inserts mid-scroll (U1, U2).
+- **Browser tests run against a real Postgres, not PGlite.** The feed is also tested below the browser (query on PGlite, route as a function, rendered markup, scroll reducer). Real scrolling and the rendered origin block are checked by Playwright (`e2e/`, `npm run test:e2e`) against a production build and a local Postgres container, which the setup refuses to replace with a non-local database (`e2e-feed-tests` change, X1 and X2; `tests/test-guide.md`).
 - **Tests run offline.** A fixture trimmed from the real feed, a fake classifier, and PGlite (in-process Postgres) instead of Neon.
 
 ## Running and checking
