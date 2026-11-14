@@ -27,7 +27,7 @@
 - [x] 4.1 Delete `app/prototype-feed/` and verify `git grep prototype-feed` finds no code reference and `npm run typecheck` passes
 - [x] 4.2 Map every scenario of `specs/claim-feed/spec.md` in `tests/spec-coverage.test.ts` (COVERAGE table and the expected scenario count) and verify `npx vitest run tests/spec-coverage.test.ts` passes
 - [x] 4.3 Update `tests/test-guide.md` (new test files; the known gap that scrolling in a real browser is untested; remove the "browser tests arrive with the UI change" line) and `CLAUDE.md` if its pointers change; verify `tests/docs.test.ts` passes
-- [ ] 4.4 Run `npm test`, `npm run typecheck` and `openspec validate feed-ui --strict`, then `npm run dev` and look at the feed with the real database (first load, scroll to the end, search, each filter, a card with and without origin) and confirm the count and label behave as in the spec
+- [x] 4.4 Run `npm test`, `npm run typecheck` and `openspec validate feed-ui --strict`, then `npm run dev` and look at the feed with the real database (first load, scroll to the end, search, each filter, a card with and without origin) and confirm the count and label behave as in the spec
 
 ## Workflow follow-up
 
