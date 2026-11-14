@@ -7,12 +7,13 @@ The reasoning behind each choice (the ADRs) is in the design of the change that 
 ## What it is
 
 A weekly job turns Google's Data Commons ClaimReview feed (a public fact-check dataset, about 200 MB, CC BY 4.0) into a
-small Postgres table of recent English-language fact-checks, each with a category and severity for its rating. A later
-web UI will read that table. Only the ingestion exists so far.
+small Postgres table of recent English-language fact-checks, each with a category and severity for its rating. A web
+feed page (Next.js) reads that table on the server and lists the fact-checks as cards, newest first, with search, filters
+and scrolling pages (the `feed-ui` change).
 
 ## Components
 
-Solid arrows are built; the dashed box is future work.
+Solid arrows are built; the dashed box is future work. The feed (bottom) is described under "The web feed" below.
 
 ```mermaid
 flowchart LR
@@ -40,7 +41,11 @@ flowchart LR
     CACHE[("rating_classifications")]
   end
 
-  LATER["Later changes: ranking, API, UI,<br/>attribution display"]
+  subgraph WEB["Next.js server"]
+    FEED_PAGE["Feed page + /api/claims<br/>src/feed/claims-query.ts<br/>(U1, U2)"]
+  end
+
+  LATER["Later changes: ranking, visual design,<br/>browser tests"]
 
   SCHED --> CLI
   SECRETS -.-> CLI
@@ -50,11 +55,19 @@ flowchart LR
   CLASSIFY <--> CACHE
   CLASSIFY --> LLM
   STORE --> REPORT --> SUMMARY
-  CLAIMS -.-> LATER
+  CLAIMS --> FEED_PAGE
+  FEED_PAGE -.-> LATER
 
   classDef external fill:#eee,stroke:#888,stroke-dasharray: 4 3;
   class LATER external;
 ```
+
+## The web feed
+
+- `app/page.tsx` (a Server Component) reads the first page of claims, the number of matches and the filter choices through `src/feed/claims-query.ts`. Further pages come from `GET /api/claims`, which calls the same module, and a small client component adds them as the reader scrolls. The browser never receives all rows, and `DATABASE_URL` stays on the server (`src/db/client.ts`). Reasoning: ADR U1 in the design of the `feed-ui` change (`openspec/changes/`, under `archive/` once archived).
+- The order is the review date, newest first, with `id` breaking ties. Pages use a keyset cursor on `(published_on, id)`, not an offset, so a claim stored by an ingestion run while someone is scrolling cannot cause a repeat or a skip (ADR U2). There is no sort control until the rating classification is settled.
+- Search and the rating and publisher filters run in SQL (`ILIKE` per word, `%` and `_` escaped). The total shown is a `count` with the same filters, not the number of rendered cards.
+- The claim origin is shown only inside a block labeled by rating category, as the claim that was checked and never as a source (ADR U3, which applies E7), with a link that is `nofollow` and shows the host only. The server never requests it.
 
 ## One run, step by step
 
@@ -115,10 +128,11 @@ erDiagram
 | `src/sources/` | Source adapters behind one interface; `data-commons/` downloads and parses the feed |
 | `src/pipeline/` | Filters, language detection, exclusion reasons, dedupe and the run (`run.ts`) |
 | `src/classification/` | Classifier interface, the Gemini classifier, the cache store, validation |
-| `src/db/` | Drizzle schema (`drizzle/` holds the migrations) |
+| `src/db/` | Drizzle schema (`drizzle/` holds the migrations) and `client.ts`, the server-side connection the web app reads with |
+| `src/feed/` | The feed's read-only claims query (filters, keyset cursor, count, filter choices) |
 | `src/cli/ingest.ts`, `scripts/ingest.ts` | The `npm run ingest` entry point and the run report |
 | `.github/workflows/ingest.yml` | Weekly cron and manual dispatch; secrets `DATABASE_URL` and `GEMINI_API_KEY` |
-| `app/` | Next.js skeleton, not built out yet |
+| `app/` | The Next.js feed page and its `/api/claims` route |
 | `tests/` | See `tests/test-guide.md` |
 
 ## Key decisions
@@ -129,6 +143,7 @@ erDiagram
 - **URL as the upsert key.** Known cost: an article that reviews several claims keeps only one. Revisit if that becomes common (watch `duplicate-url` in the run report).
 - **Deterministic language detection.** Two offline libraries (`franc-min` or `tinyld`) behind a Latin-letter guard, chosen by a labeled fixture test. No LLM.
 - **The LLM sees only rating text.** Never the claim, URL or publisher. Results are cached by exact text and classifier version.
+- **The feed reads the database on the server, with keyset paging.** Correct count, search and filters at any size, and no repeats when ingestion inserts mid-scroll (U1, U2).
 - **Tests run offline.** A fixture trimmed from the real feed, a fake classifier, and PGlite (in-process Postgres) instead of Neon.
 
 ## Running and checking

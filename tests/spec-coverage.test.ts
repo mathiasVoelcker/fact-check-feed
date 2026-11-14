@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 /**
- * Every scenario in the three specs maps to the test(s) that cover it, as [test file, a fragment of the test title].
+ * Every scenario in the four specs maps to the test(s) that cover it, as [test file, a fragment of the test title].
  * This test fails when a scenario has no entry here, when an entry names a scenario that no longer exists, or when
  * the named test has been renamed or removed. The tests themselves run with the rest of the suite.
  */
@@ -141,9 +141,70 @@ const COVERAGE: Record<string, [file: string, title: string][]> = {
   "rating-classification :: Classifier unavailable": [["classification", "stores the record as unclassifiable, does not cache it, and reports the failure"]],
   "rating-classification :: Failed result is retried later": [["classification", "retries a failed text in the next run"]],
   "rating-classification :: Classifier input": [["classification", "sends the distinct rating texts and nothing else"]],
+
+  // claim-feed
+  "claim-feed :: Newest first": [["feed-query", "lists the newest review date first"]],
+  "claim-feed :: Same date keeps a stable order": [["feed-query", "keeps the same order for claims that share a date"]],
+  "claim-feed :: No sort control": [
+    ["feed-page", "offers a search box, a rating filter and a publisher filter built from the data, and no sort control"],
+    ["feed-page", "has no sort control or sort parameter in the feed sources"],
+    ["feed-route", "ignores query parameters it does not know"],
+  ],
+  "claim-feed :: Empty database": [["feed-page", "says there are no fact-checks yet for an empty database, with no cards"]],
+  "claim-feed :: Full card": [["feed-card", "shows the badge, rating text, claim, explanation, publisher, date and fact-check link of a full card"]],
+  "claim-feed :: Card without an explanation": [["feed-card", "has no explanation block when the claim has no explanation"]],
+  "claim-feed :: Fact-check link": [["feed-card", "opens the fact-check link in a new tab with rel noopener noreferrer"]],
+  "claim-feed :: Claim rated false": [["feed-card", "says the claim is false when the category is false"]],
+  "claim-feed :: Claim rated misleading": [["feed-card", "says the claim is misleading when the category is misleading"]],
+  "claim-feed :: Claim not rated false or misleading": [["feed-card", "calls a claim rated %s the claim that was checked, never false or misleading"]],
+  "claim-feed :: Origin shown with the rating": [["feed-card", "shows the origin block together with the rating badge and rating text"]],
+  "claim-feed :: Card without origin": [["feed-card", "does not show the original author, venue or link on a card without an origin block"]],
+  "claim-feed :: Link attributes": [
+    ["feed-card", "opens in a new tab with rel noopener noreferrer nofollow"],
+    ["feed-card", "shows the host with a warning marker, not the full URL"],
+  ],
+  "claim-feed :: Not an ordinary link": [["feed-card", "is marked differently from the fact-check link, which alone invites reading more"]],
+  "claim-feed :: Unsafe URL is not linked": [["feed-card", "does not link %s"]],
+  "claim-feed :: Original URL is never requested": [
+    ["feed-route", "makes no request to an original-claim URL or any other host while serving pages"],
+    ["feed-page", "requests nothing but its own claims route: no original-claim URL, no publisher site"],
+  ],
+  "claim-feed :: First page": [
+    ["feed-query", "returns exactly one page of 50 and a cursor when more claims match"],
+    ["feed-page", "shows how many claims match, not how many cards are rendered"],
+  ],
+  "claim-feed :: Next page": [
+    ["feed-scroll", "starts loading with the cursor when the sentinel asks for more"],
+    ["feed-route", "returns the next page for a cursor, with no total, and no cursor on the last page"],
+  ],
+  "claim-feed :: Last page": [
+    ["feed-scroll", "appends a loaded page and takes its cursor, and stops when the last page arrives"],
+    ["feed-page", "shows a loading marker only while a next page exists"],
+  ],
+  "claim-feed :: No duplicates or gaps": [
+    ["feed-query", "shows each matching claim exactly once over all pages"],
+    ["feed-scroll", "never shows a claim twice, even if a page repeats one"],
+  ],
+  "claim-feed :: New claim between pages": [["feed-query", "neither repeats nor skips a claim when a newer claim is stored after the first page was loaded"]],
+  "claim-feed :: Count with more pages to load": [["feed-page", "shows how many claims match, not how many cards are rendered"]],
+  "claim-feed :: Count follows the filters": [
+    ["feed-query", "counts only claims matching the filters"],
+    ["feed-route", "applies search, category and publisher from the query string, and the total follows"],
+  ],
+  "claim-feed :: Search words all must match": [["feed-query", "requires every word to match, in any order"]],
+  "claim-feed :: Search ignores case": [["feed-query", "ignores letter case"]],
+  "claim-feed :: Search characters are literal": [["feed-query", "matches % _ and"]],
+  "claim-feed :: Rating and publisher filters combine": [["feed-query", "combines category, publisher and search"]],
+  "claim-feed :: Filter choices come from the data": [
+    ["feed-query", "offers exactly the publishers and categories present, sorted"],
+    ["feed-page", "offers a search box, a rating filter and a publisher filter built from the data, and no sort control"],
+  ],
+  "claim-feed :: Filter restarts the list": [["feed-scroll", "changing the filters clears the list and starts again from the first page"]],
+  "claim-feed :: No match": [["feed-page", "says nothing matches and offers to clear the search and filters when a search finds nothing"]],
+  "claim-feed :: Attribution visible": [["feed-page", "shows the attribution text of the Data Commons allowlist entry"]],
 };
 
-const CAPABILITIES = ["source-allowlist", "claim-ingestion", "rating-classification"];
+const CAPABILITIES = ["source-allowlist", "claim-ingestion", "rating-classification", "claim-feed"];
 const here = (relative: string) => fileURLToPath(new URL(relative, import.meta.url));
 
 /**
@@ -173,8 +234,8 @@ const scenariosOf = (capability: string) => [
 const specScenarios = CAPABILITIES.flatMap(scenariosOf);
 
 describe("spec scenario coverage", () => {
-  it("finds the scenarios of all three specs", () => {
-    expect(specScenarios.length).toBe(62);
+  it("finds the scenarios of all four specs", () => {
+    expect(specScenarios.length).toBe(93);
   });
 
   it("maps every scenario in the specs to at least one test", () => {

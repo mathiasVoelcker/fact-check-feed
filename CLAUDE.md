@@ -1,7 +1,7 @@
 # Fact-check feed
 
 A learning project built with spec-driven development (OpenSpec). A weekly job ingests recent fact-checks from the
-Data Commons ClaimReview feed into Postgres (Neon); a web UI will read them later. Only the ingestion exists so far.
+Data Commons ClaimReview feed into Postgres (Neon); a web feed page (Next.js, `app/`, `src/feed/`) reads them.
 
 ## Where to look
 

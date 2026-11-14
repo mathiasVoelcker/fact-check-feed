@@ -10,7 +10,7 @@ You need Node 24 (`nvm use 24`; the version is pinned in `.nvmrc`) and `npm inst
 npm test
 ```
 
-This runs `vitest run` over `tests/**/*.test.ts`: about 23 files and 421 tests.
+This runs `vitest run` over `tests/**/*.test.ts`: about 28 files and 536 tests.
 
 | Goal                         | Command                                                      |
 | ---------------------------- | ------------------------------------------------------------ |
@@ -38,6 +38,7 @@ The suite is limited to 2 workers and has generous timeouts (30 s per test, 60 s
 | Data Commons adapter | `data-commons-adapter`, `data-commons-adapter-memory`, `data-commons-fetch`                   |
 | Filters              | `filter-required-fields`, `filter-dates`, `filter-entries`, `text-cap`, `language`          |
 | Classification       | `classification`, `gemini-classifier`                                                      |
+| Web feed             | `feed-query` (SQL on PGlite), `feed-route`, `feed-card` (rendered markup, origin label, links), `feed-scroll` (list reducer), `feed-page` (page text, source rules) |
 | Whole pipeline       | `ingestion`, `rating-explanation`, `claim-origin`, `legal`, `cli`                             |
 | Docs and workflow    | `docs`, `workflow`                                                                            |
 | Spec coverage        | `spec-coverage`                                                                               |
@@ -56,7 +57,7 @@ File names are `<name>.test.ts`.
 
 ## The spec-coverage test
 
-`spec-coverage.test.ts` reads every `#### Scenario:` in the three specs, including the delta specs of changes still in progress, and checks that a test is mapped to it. It fails when:
+`spec-coverage.test.ts` reads every `#### Scenario:` in the four specs, including the delta specs of changes still in progress, and checks that a test is mapped to it. It fails when:
 
 - a scenario has no mapped test,
 - a mapping names a scenario that no longer exists, or
@@ -68,4 +69,4 @@ When you add a scenario to a spec, add a line for it in that file's `COVERAGE` t
 
 - No automated test checks the model's judgment. The prompt was tried against the real model once, by hand, in the first live ingestion run (the answers are recorded in the fixture). The classifier tests replay those recorded answers, so they prove the plumbing (validation, caching, failure handling, and that only the rating text is sent). If the model or prompt changes, run a live ingestion and check the `rating_classifications` table.
 - The GitHub Actions workflow file is tested only for its structure and the absence of secrets. It passes `actionlint` and has been run once on GitHub, but a scheduled run is not covered by any test.
-- There are no browser tests (Playwright). They arrive with the UI change.
+- There are no browser tests (Playwright). The feed's scrolling in a real browser (the `IntersectionObserver`, aborting a request when the filters change, the retry button) and its look are checked by hand with `npm run dev`. The scroll rules themselves are a pure reducer with its own tests (`feed-scroll`). A Playwright change needs a seeded Postgres and a running Next server; see design U8 of the `feed-ui` change.
