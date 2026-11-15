@@ -1,8 +1,9 @@
 # Rating classification
 
 Fact-checkers word their verdicts freely ("False", "பொய் / False", a whole sentence). Ingestion turns each distinct
-rating text into a **category** and a **severity** so that later features can sort and filter by how negative a
-verdict is, whatever the publisher's wording or language.
+rating text into a **category** and a **severity** so that the feed can filter by rating category (and later sort by how negative a
+verdict is), whatever the publisher's wording or language. The feed also words the label on a claim's origin by category
+(`src/feed/origin-label.ts`), so a claim is only called false when its category is `false`.
 
 ## Categories
 

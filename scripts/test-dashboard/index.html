@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test dashboard</title>
+<style>
+  :root { --bg:#f7f7f5; --panel:#fff; --text:#1c1c1a; --muted:#6b6b66; --line:#e3e3de; --pass:#1a7f4b; --fail:#c62f2f; --skip:#8a6d0b; --none:#9a9a94; --accent:#2f5bd8; --pass-bg:#e6f4ec; --fail-bg:#fbe9e9; --skip-bg:#fbf3d9; --none-bg:#efefeb; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#151514; --panel:#1e1e1c; --text:#ececE8; --muted:#a2a29b; --line:#33332f; --pass:#4cc38a; --fail:#ff7b7b; --skip:#e3b94f; --none:#85857e; --accent:#7b9cff; --pass-bg:#173326; --fail-bg:#3a1d1d; --skip-bg:#3a3217; --none-bg:#2a2a27; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.45 system-ui,-apple-system,sans-serif; }
+  main { max-width:1100px; margin:0 auto; padding:24px 16px 80px; }
+  header { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin-bottom:20px; }
+  h1 { font-size:22px; margin:0; }
+  .sub { color:var(--muted); font-size:13px; }
+  button { font:inherit; border:1px solid var(--line); background:var(--panel); color:var(--text); border-radius:6px; padding:6px 12px; cursor:pointer; }
+  button:hover:not(:disabled) { border-color:var(--accent); }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
+  button.small { padding:2px 9px; font-size:12px; }
+  .tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-bottom:20px; }
+  .tile { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .tile b { display:block; font-size:26px; line-height:1.1; font-variant-numeric:tabular-nums; }
+  .tile span { color:var(--muted); font-size:12px; }
+  .tile.pass b { color:var(--pass); } .tile.fail b { color:var(--fail); } .tile.skip b { color:var(--skip); }
+  .toolbar { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; align-items:center; }
+  input[type=search] { font:inherit; padding:6px 10px; border:1px solid var(--line); border-radius:6px; background:var(--panel); color:var(--text); min-width:200px; }
+  .chip.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .banner { border:1px solid var(--line); background:var(--panel); border-radius:8px; padding:10px 14px; margin-bottom:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+  .banner.run { border-color:var(--accent); } .banner.bad { border-color:var(--fail); }
+  .spin { width:14px; height:14px; border:2px solid var(--line); border-top-color:var(--accent); border-radius:50%; animation:s 0.8s linear infinite; }
+  @keyframes s { to { transform:rotate(360deg); } }
+  section.suite { background:var(--panel); border:1px solid var(--line); border-radius:10px; margin-bottom:20px; overflow:hidden; }
+  .suite-head { padding:14px 16px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line); }
+  .suite-head h2 { margin:0; font-size:16px; }
+  .bar { display:flex; height:6px; border-radius:3px; overflow:hidden; background:var(--none-bg); margin-top:8px; width:280px; max-width:100%; }
+  .bar i { display:block; } .bar .p { background:var(--pass); } .bar .f { background:var(--fail); } .bar .s { background:var(--skip); }
+  details.group { border-bottom:1px solid var(--line); } details.group:last-child { border-bottom:0; }
+  details.group > summary { list-style:none; cursor:pointer; padding:10px 16px; display:flex; gap:10px; align-items:center; background:var(--bg); }
+  details.group > summary::-webkit-details-marker { display:none; }
+  summary .caret::before { content:"▸"; color:var(--muted); display:inline-block; width:12px; } details[open] > summary .caret::before { content:"▾"; }
+  .grow { flex:1; min-width:0; } .gname { font-weight:600; }
+  .counts { color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums; }
+  .badge { font-size:11px; padding:1px 8px; border-radius:10px; font-weight:600; white-space:nowrap; }
+  .badge.passed { color:var(--pass); background:var(--pass-bg); } .badge.failed { color:var(--fail); background:var(--fail-bg); }
+  .badge.skipped { color:var(--skip); background:var(--skip-bg); } .badge.notrun { color:var(--none); background:var(--none-bg); }
+  .badge.running { color:var(--accent); background:var(--none-bg); }
+  .file { border-top:1px solid var(--line); }
+  .file-row { display:flex; gap:10px; align-items:center; padding:8px 16px 8px 38px; }
+  .file-row .name { font-family:ui-monospace,Menlo,monospace; font-size:12.5px; cursor:pointer; }
+  .tests { padding:2px 16px 10px 52px; }
+  .t { display:flex; gap:8px; padding:3px 0; font-size:13px; align-items:baseline; }
+  .t .dot { width:8px; height:8px; border-radius:50%; flex:none; margin-top:5px; }
+  .dot.passed { background:var(--pass); } .dot.failed { background:var(--fail); } .dot.skipped { background:var(--skip); }
+  .t .ms { color:var(--muted); margin-left:auto; font-size:12px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  pre { margin:0; font:12px/1.45 ui-monospace,Menlo,monospace; white-space:pre-wrap; word-break:break-word; }
+  pre.err { background:var(--fail-bg); color:var(--text); border-radius:6px; padding:8px 10px; margin:2px 0 8px; max-height:260px; overflow:auto; }
+  pre.log { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px; max-height:360px; overflow:auto; }
+  .empty { padding:18px 16px; color:var(--muted); }
+  .muted { color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Test dashboard</h1>
+      <div class="sub" id="sub">Loading…</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="primary" id="runAll">Run all tests</button>
+      <button id="stop" disabled>Stop</button>
+      <button id="clear" title="Forget stored results">Clear results</button>
+    </div>
+  </header>
+
+  <div class="tiles" id="tiles"></div>
+  <div id="banner"></div>
+
+  <div class="toolbar">
+    <input type="search" id="q" placeholder="Filter tests and files…">
+    <button class="chip small" data-f="failed">Failed</button>
+    <button class="chip small" data-f="passed">Passed</button>
+    <button class="chip small" data-f="skipped">Skipped</button>
+    <button class="chip small" data-f="notrun">Not run</button>
+  </div>
+
+  <div id="suites"></div>
+
+  <h3 style="margin:28px 0 8px">Runner output</h3>
+  <pre class="log" id="log">Nothing has run yet.</pre>
+</main>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = (ms) => ms >= 1000 ? (ms / 1000).toFixed(1) + " s" : Math.round(ms) + " ms";
+const open = new Set(JSON.parse(sessionStorage.getItem("open") || "[]"));
+const filters = new Set();
+let data = null, busy = false;
+
+function fileStatus(f) {
+  const r = f.result;
+  if (!r) return "notrun";
+  if (r.error || r.tests.some((t) => t.status === "failed")) return "failed";
+  return r.tests.some((t) => t.status === "passed") ? "passed" : "skipped";
+}
+function count(files) {
+  const c = { passed: 0, failed: 0, skipped: 0, files: files.length, notrun: 0, ms: 0 };
+  for (const f of files) {
+    if (!f.result) { c.notrun++; continue; }
+    c.ms += f.result.durationMs;
+    for (const t of f.result.tests) c[t.status]++;
+  }
+  return c;
+}
+const countsText = (c) => [c.passed && `${c.passed} passed`, c.failed && `${c.failed} failed`, c.skipped && `${c.skipped} skipped`, c.notrun && `${c.notrun} of ${c.files} files not run`].filter(Boolean).join(" · ") || `${c.files} files`;
+
+async function post(url, body) {
+  const r = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body || {}) });
+  if (!r.ok) alert((await r.json()).error || "Request failed");
+  refresh();
+}
+const runSuite = (suite, files) => post("/api/run", { suite, files });
+
+async function refresh() {
+  try { data = await (await fetch("/api/state")).json(); } catch { $("#sub").textContent = "Cannot reach the dashboard server."; return; }
+  render();
+}
+
+function render() {
+  const run = data.run, running = !!(run && run.running);
+  const all = data.suites.flatMap((s) => s.groups.flatMap((g) => g.files));
+  const c = count(all);
+  const ran = all.filter((f) => f.result).length;
+  $("#sub").textContent = `${all.length} test files in ${data.suites.length} suites · ${ran} with results`;
+  $("#runAll").disabled = running; $("#stop").disabled = !running;
+  $("#tiles").innerHTML = [
+    ["", c.passed + c.failed + c.skipped, "tests with results"],
+    ["pass", c.passed, "passed"], ["fail", c.failed, "failed"], ["skip", c.skipped, "skipped"],
+    ["", c.notrun, "files not run"], ["", fmt(c.ms), "total duration"],
+  ].map(([k, v, l]) => `<div class="tile ${k}"><b>${v}</b><span>${l}</span></div>`).join("");
+
+  let banner = "";
+  if (running) banner = `<div class="banner run"><div class="spin"></div><div>Running ${esc(run.suite)} tests${run.files === "all" ? "" : " (" + run.files.length + " file" + (run.files.length > 1 ? "s" : "") + ")"}…</div></div>`;
+  else if (run) {
+    const bad = run.message || (run.exitCode && !run.stopped);
+    banner = `<div class="banner ${run.message && !/Stopped/.test(run.message) ? "bad" : ""}"><div><b>Last run:</b> ${esc(run.suite)}, ${run.exitCode === 0 ? "all passed" : run.stopped ? "stopped" : "finished with failures or errors"}${run.message ? "<br><span class=muted>" + esc(run.message) + "</span>" : ""}</div></div>`;
+  }
+  $("#banner").innerHTML = banner;
+  if (run) { const l = $("#log"); const stick = l.scrollTop + l.clientHeight >= l.scrollHeight - 20; l.textContent = run.log; if (stick) l.scrollTop = l.scrollHeight; }
+
+  const q = $("#q").value.toLowerCase();
+  const targeted = (f) => running && (run.files === "all" ? true : run.files.includes(f.file));
+  $("#suites").innerHTML = data.suites.map((s) => {
+    const sc = count(s.groups.flatMap((g) => g.files));
+    const total = sc.passed + sc.failed + sc.skipped || 1;
+    const groups = s.groups.map((g) => {
+      const gc = count(g.files);
+      const files = g.files.map((f) => {
+        const st = targeted(f) && running && run.suite === s.id ? "running" : fileStatus(f);
+        const tests = (f.result?.tests || []).filter((t) => (!filters.size || filters.has(t.status)) && (!q || (t.name + f.file).toLowerCase().includes(q)));
+        const fileMatches = (!q || f.file.toLowerCase().includes(q)) && (!filters.size || filters.has(st) || tests.length);
+        if (!(fileMatches || tests.length)) return "";
+        const key = s.id + "|" + f.file, isOpen = open.has(key);
+        const body = isOpen ? `<div class="tests">${f.result ? (f.result.error ? `<pre class="err">${esc(f.result.error)}</pre>` : "") + tests.map((t) => `<div><div class="t"><span class="dot ${t.status}"></span><span>${esc(t.name)}${t.flaky ? ' <span class="badge skipped">flaky</span>' : ""}</span><span class="ms">${fmt(t.durationMs)}</span></div>${t.error ? `<pre class="err">${esc(t.error)}</pre>` : ""}</div>`).join("") : '<div class="muted">Not run yet.</div>'}</div>` : "";
+        const n = f.result ? f.result.tests.length : 0;
+        return `<div class="file"><div class="file-row"><span class="name" data-toggle="${esc(key)}">${isOpen ? "▾" : "▸"} ${esc(f.file)}</span><span class="grow"></span><span class="counts">${f.result ? n + " tests · " + fmt(f.result.durationMs) : ""}</span><span class="badge ${st}">${st === "notrun" ? "not run" : st}</span><button class="small" ${running ? "disabled" : ""} data-run="${s.id}" data-files='${esc(JSON.stringify([f.file]))}'>Run</button></div>${body}</div>`;
+      }).join("");
+      if (!files) return "";
+      const gk = s.id + "|g|" + g.name;
+      const gst = g.files.some((f) => fileStatus(f) === "failed") ? "failed" : g.files.every((f) => fileStatus(f) === "notrun") ? "notrun" : g.files.some((f) => fileStatus(f) === "notrun") ? "notrun" : "passed";
+      return `<details class="group" data-gk="${esc(gk)}" ${open.has(gk) || q || filters.size ? "open" : ""}><summary><span class="caret"></span><span class="gname grow">${esc(g.name)} <span class="counts">· ${countsText(gc)}</span></span><span class="badge ${gst}">${gst === "notrun" ? "incomplete" : gst}</span><button class="small" ${running ? "disabled" : ""} data-run="${s.id}" data-files='${esc(JSON.stringify(g.files.map((f) => f.file)))}'>Run group</button></summary>${files}</details>`;
+    }).join("");
+    const head = `<div class="suite-head"><div><h2>${esc(s.name)}</h2><div class="sub">${esc(s.description)} · ${countsText(sc)}</div><div class="bar"><i class="p" style="width:${sc.passed / total * 100}%"></i><i class="f" style="width:${sc.failed / total * 100}%"></i><i class="s" style="width:${sc.skipped / total * 100}%"></i></div></div><button class="primary" ${running || !s.configured || !s.groups.length ? "disabled" : ""} data-run="${s.id}" data-files="[]">Run ${esc(s.name.toLowerCase())}</button></div>`;
+    const empty = !s.groups.length ? `<div class="empty">No test files found yet.</div>` : !s.configured ? `<div class="empty">Found ${s.groups.reduce((n, g) => n + g.files.length, 0)} spec files, but there is no <code>playwright.config.ts</code> yet, so they cannot run.</div>` : "";
+    return `<section class="suite">${head}${empty}${groups}</section>`;
+  }).join("");
+}
+
+document.addEventListener("click", (e) => {
+  const run = e.target.closest("[data-run]");
+  if (run) { e.preventDefault(); const files = JSON.parse(run.dataset.files); return runSuite(run.dataset.run, files.length ? files : undefined); }
+  const t = e.target.closest("[data-toggle]");
+  if (t) { const k = t.dataset.toggle; open.has(k) ? open.delete(k) : open.add(k); save(); render(); }
+  const chip = e.target.closest(".chip");
+  if (chip) { const f = chip.dataset.f; filters.has(f) ? filters.delete(f) : filters.add(f); chip.classList.toggle("on"); render(); }
+});
+document.addEventListener("toggle", (e) => {
+  const gk = e.target.dataset?.gk;
+  if (gk) { e.target.open ? open.add(gk) : open.delete(gk); save(); }
+}, true);
+function save() { try { sessionStorage.setItem("open", JSON.stringify([...open])); } catch {} }
+$("#q").addEventListener("input", render);
+$("#runAll").onclick = async () => { for (const s of data.suites.filter((s) => s.configured && s.groups.length)) { await runSuite(s.id); await waitIdle(); } };
+$("#stop").onclick = () => post("/api/stop");
+$("#clear").onclick = () => confirm("Forget all stored results?") && post("/api/clear");
+async function waitIdle() { do { await new Promise((r) => setTimeout(r, 1000)); await refresh(); } while (data.run?.running); }
+setInterval(() => { if (data?.run?.running || !data) refresh(); }, 1000);
+refresh();
+</script>
+</body>
+</html>
